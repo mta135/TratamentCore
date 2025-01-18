@@ -22,13 +22,16 @@ namespace Tratament.Web.Controllers
         [HttpPost]
         public IActionResult Send(SendRequestViewModel requestViewModel)
         {
-
             ViewBag.TicketTypes = GetTicketTypes();
 
-
-            return View(requestViewModel);
+            return RedirectPermanent("/SendRequest/Submited");
         }
 
+
+        public IActionResult Submited()
+        {
+            return View();
+        }
 
         private List<SelectListItem> GetTicketTypes()
         {
