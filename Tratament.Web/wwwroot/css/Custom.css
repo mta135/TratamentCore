@@ -1,0 +1,21 @@
+﻿﻿ /* Validation error messages */
+.field-validation-error {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+/*.input-validation-error {
+    border: 2px solid red;
+    background-color: #ffe6e6;*/ /* Light red background */
+/*}
+
+.alert-danger {
+    color: white;
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}*/
