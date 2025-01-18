@@ -3,13 +3,14 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
 
         // Add services
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
+
+        var app = builder.Build();
 
         app.UseDeveloperExceptionPage();
         app.UseStatusCodePages();
@@ -18,5 +19,8 @@ internal class Program
 
         app.UseRouting();
         app.MapDefaultControllerRoute();
+
+
+        app.Run();
     }
 }

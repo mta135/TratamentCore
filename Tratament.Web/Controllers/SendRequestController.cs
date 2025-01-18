@@ -4,7 +4,9 @@ namespace Tratament.Web.Controllers
 {
     public class SendRequestController : Controller
     {
-        public IActionResult Index()
+
+        [HttpGet]
+        public IActionResult Send()
         {
             return View();
         }
