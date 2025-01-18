@@ -23,7 +23,7 @@
                         <label class="col-sm-4">Tipul pensiei</label>
                         <div class="col-sm-8">
 
-                            <select asp-for="@(Model.TicketTypeId)" asp-items="@(ViewBag.TicketTypes)" class="form-control" id="tiketType">
+                            <select asp-for="@(Model.TicketTypeId)" asp-items="@(ViewBag.TicketTypes)" class="form-control" id="tiketType" onchange="GetPensionTypeSelectedItem()">
                                 <option selected value="">Alege Tipul tichetului</option>
                             </select>
                             <span asp-validation-for="@(Model.TicketTypeId)" class="text-danger"></span>
@@ -56,7 +56,40 @@
                         </div>
                     </div>
 
+                    <hr />
 
+                    <div class="row" id="error-corect-data" style="display:none">
+                        <div class="col-sm-10">
+                            <span id="error-corect-data" style="color: red;">Acest cimp este obligator</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-1" style="display:none" id="ConfirmCorectData">
+                            <input id="CorrectData" type="checkbox" name="CorrectData" data-val="true">
+                        </div>
+
+                        <div class="col-sm-11">
+
+                            <div id="DisabilitiesTicketsConfirm" style="display:none">
+                                @await Html.PartialAsync("~/Views/Partials/DisabilitiesTicketsConfirm_Partial.cshtml")
+                            </div>
+
+                            <div id="VeteransTicketsConfirm" style="display:none">
+                                @await Html.PartialAsync("~/Views/Partials/VeteransTicketsConfirm_Partial.cshtml")
+                            </div>
+
+                            <div id="CernobilTicketsConfirm" style="display:none">
+                                @await Html.PartialAsync("~/Views/Partials/CernobilTicketsConfirm_Partial.cshtml")
+                            </div>
+
+                            <div id="PaymentCompensationConfirm" style="display:none">
+                                @await Html.PartialAsync("~/Views/Partials/PaymentCompensationConfirm_Partial.cshtml")
+                            </div>
+
+                        </div>
+                    </div>
 
                     <div class="row mt-2">
                         <div class="col-sm-12">
@@ -69,9 +102,173 @@
             </div>
         </div>
 
+
+        <div class="col-sm-7">
+
+            <div id="DisabilitiesTreatmentTickets" style="display:none">
+
+                @await Html.PartialAsync("~/Views/Partials/DisabilitiesTreatmentTicketsUtil_Partial.cshtml")
+            </div>
+
+            <div id="VeteransTreatmentTickets" style="display:none">
+
+                @await Html.PartialAsync("~/Views/Partials/VeteransTreatmentTicketsUtil_Partial.cshtml")
+            </div>
+
+            <div id="TicketsForCernobil" style="display:none">
+
+                @await Html.PartialAsync("~/Views/Partials/RequestCernobilTreatmentsTicketsUtil_Partial.cshtml")
+            </div>
+
+            <div id="PaymentCompensation" style="display:none">
+
+                @await Html.PartialAsync("~/Views/Partials/PaymentCompensationForCernobil.cshtml")
+            </div>
+
+        </div>
+
     </form>
 
 </div>
+
+
+
+<script type="text/javascript">
+
+    function GetPensionTypeSelectedItem() {
+
+        var utilDivIds = [
+            "DisabilitiesTreatmentTickets",
+            "VeteransTreatmentTickets",
+            "TicketsForCernobil",
+            "PaymentCompensation"
+        ];
+
+
+        var confirmDivsId = [
+            "ConfirmCorectData",
+            "DisabilitiesTicketsConfirm",
+            "VeteransTicketsConfirm",
+            "CernobilTicketsConfirm",
+            "PaymentCompensationConfirm"
+        ];
+
+        var value = document.getElementById("PensionType");
+        var getvalue = value.options[value.selectedIndex].value;
+
+        HideMultipleDivs(utilDivIds);
+
+        HideMultipleDivs(confirmDivsId);
+
+        switch (getvalue) {
+            case "1":
+                ShowUtilDivs(document.getElementById("DisabilitiesTreatmentTickets"));
+
+                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+                break;
+
+            case "2":
+                ShowUtilDivs(document.getElementById("VeteransTreatmentTickets"));
+
+                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+                break;
+
+            case "3":
+                ShowUtilDivs(document.getElementById("TicketsForCernobil"));
+
+                ShowUtilDivs(document.getElementById("CernobilTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+
+                break;
+
+            case "4":
+                ShowUtilDivs(document.getElementById("PaymentCompensation"));
+
+                ShowUtilDivs(document.getElementById("PaymentCompensationConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+
+                break;
+
+            default:
+                // If no valid selection, keep all divs hidden
+                break;
+        }
+    }
+
+    function HideUtilDivs(divElement) {
+
+        if (IsVisible(divElement)) {
+            divElement.style.display = 'none';
+        }
+    }
+
+    function ShowUtilDivs(divId) {
+        divId.style.display = 'block';
+    }
+
+    function HideMultipleDivs(divIds) {
+
+        divIds.forEach(function (divId) {
+            var divElement = document.getElementById(divId);
+            if (divElement) {
+                HideUtilDivs(divElement);
+            }
+        });
+    }
+
+    document.getElementById('sendRequestForm').addEventListener('submit', function (event) {
+
+        debugger;
+
+        var correctData = document.getElementById('CorrectData');
+
+        if (IsVisible(correctData)) {
+            ValidateCorrectData(event);
+        }
+    });
+
+    function ValidateCorrectData(event) {
+
+        var correctData = document.getElementById('CorrectData');
+        var errorCorrectData = document.getElementById('error-corect-data');
+
+        if (!correctData.checked) {
+
+            PreventSubmit(event);
+            errorCorrectData.style.display = 'block';
+
+        } else {
+            errorCorrectData.style.display = 'none';
+        }
+    }
+
+    function PreventSubmit(event) {
+        event.preventDefault();
+    }
+
+    function IsVisible(divElement) {
+
+        if ($(divElement).is(':visible')) {
+            return true;
+        }
+        return false;
+    }
+
+    const checkbox = document.querySelector('#CorrectData');
+
+    const divElement = document.querySelector('#error-corect-data');
+
+    checkbox.addEventListener('change', handleChange);
+
+    function handleChange(e) {
+        if (e.target.checked && IsVisible(checkbox)) {
+            $(divElement).hide();
+        }
+    }
+
+</script>
 
 
 
