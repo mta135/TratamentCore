@@ -12,14 +12,23 @@ internal class Program
 
         var app = builder.Build();
 
-        app.UseDeveloperExceptionPage();
-        app.UseStatusCodePages();
+        // Configure the HTTP request pipeline.
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseExceptionHandler("/Error");
+            app.UseHsts();
+        }
 
+        app.UseHttpsRedirection();
         app.UseStaticFiles();
 
-        app.UseRouting();
-        app.MapDefaultControllerRoute();
+        app.UseAuthorization();
 
+
+        app.MapDefaultControllerRoute();
+        app.MapRazorPages();
+
+        app.UseAntiforgery();
 
         app.Run();
     }
