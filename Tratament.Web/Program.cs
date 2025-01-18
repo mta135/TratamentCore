@@ -1,6 +1,22 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+        // Add services
+        builder.Services.AddControllersWithViews();
 
-app.Run();
+        builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+
+        app.UseDeveloperExceptionPage();
+        app.UseStatusCodePages();
+
+        app.UseStaticFiles();
+
+        app.UseRouting();
+        app.MapDefaultControllerRoute();
+    }
+}
