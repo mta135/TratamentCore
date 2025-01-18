@@ -1,8 +1,54 @@
 ﻿
 
+@model Tratament.Web.ViewModels.SendRequest.SendRequestViewModel
+
 
 <div class="container">
 
-    <h1>Depune Cererea</h1>
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <h5> Depune cererea </h5>
+        </div>
+    </div>
+
+    <form>
+
+    <div class="mt-5">
+
+
+        <div class="row">
+
+          <div class="col-sm-5">
+
+
+                <div class="row">
+                    <label class="col-sm-4">Tipul pensiei</label>
+                    <div class="col-sm-8">
+
+                        <select asp-for="@(Model.TicketTypeId)" asp-items="@(ViewBag.TicketTypes)" class="form-control" id="tiketType">
+                            <option selected value="">Alege Tipul tichetului</option>
+
+                        </select>
+                        <span asp-validation-for="@(Model.TicketTypeId)" class="text-danger"></span>
+
+             
+                    </div>
+                </div>
+          
+          
+          
+          
+          
+          
+          
+          </div>
+        </div>
+    </div>
+
+    </form>
 
 </div>
+
+
+
+          
