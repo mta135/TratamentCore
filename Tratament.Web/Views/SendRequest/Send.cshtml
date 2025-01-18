@@ -99,30 +99,31 @@
                     </div>
 
                 </div>
-            </div>
-        </div>
 
+                <div class="col-sm-7">
 
-        <div class="col-sm-7">
+                    <div id="DisabilitiesTreatmentTickets" style="display:none">
 
-            <div id="DisabilitiesTreatmentTickets" style="display:none">
+                        @await Html.PartialAsync("~/Views/Partials/DisabilitiesTreatmentTicketsUtil_Partial.cshtml")
+                    </div>
 
-                @await Html.PartialAsync("~/Views/Partials/DisabilitiesTreatmentTicketsUtil_Partial.cshtml")
-            </div>
+                    <div id="VeteransTreatmentTickets" style="display:none">
 
-            <div id="VeteransTreatmentTickets" style="display:none">
+                        @await Html.PartialAsync("~/Views/Partials/VeteransTreatmentTicketsUtil_Partial.cshtml")
+                    </div>
 
-                @await Html.PartialAsync("~/Views/Partials/VeteransTreatmentTicketsUtil_Partial.cshtml")
-            </div>
+                    <div id="TicketsForCernobil" style="display:none">
 
-            <div id="TicketsForCernobil" style="display:none">
+                        @await Html.PartialAsync("~/Views/Partials/RequestCernobilTreatmentsTicketsUtil_Partial.cshtml")
+                    </div>
 
-                @await Html.PartialAsync("~/Views/Partials/RequestCernobilTreatmentsTicketsUtil_Partial.cshtml")
-            </div>
+                    <div id="PaymentCompensation" style="display:none">
 
-            <div id="PaymentCompensation" style="display:none">
+                        @await Html.PartialAsync("~/Views/Partials/PaymentCompensationForCernobil.cshtml")
+                    </div>
 
-                @await Html.PartialAsync("~/Views/Partials/PaymentCompensationForCernobil.cshtml")
+                </div>
+
             </div>
 
         </div>
@@ -153,7 +154,7 @@
             "PaymentCompensationConfirm"
         ];
 
-        var value = document.getElementById("PensionType");
+        var value = document.getElementById("tiketType");
         var getvalue = value.options[value.selectedIndex].value;
 
         HideMultipleDivs(utilDivIds);
