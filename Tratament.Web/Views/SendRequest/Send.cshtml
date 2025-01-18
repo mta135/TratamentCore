@@ -19,20 +19,43 @@
 
                 <div class="col-sm-5">
 
-
-                    <div class="row">
+                    <div class="row mt-2">
                         <label class="col-sm-4">Tipul pensiei</label>
                         <div class="col-sm-8">
 
                             <select asp-for="@(Model.TicketTypeId)" asp-items="@(ViewBag.TicketTypes)" class="form-control" id="tiketType">
                                 <option selected value="">Alege Tipul tichetului</option>
-
                             </select>
                             <span asp-validation-for="@(Model.TicketTypeId)" class="text-danger"></span>
 
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <label class="col-sm-4">IDNP benficiarului</label>
+                        <div class="col-sm-8">
+
+                            <input type="text" asp-for="@(Model.Idnp)" class="form-control" id="Idnp" />
+                            <span asp-validation-for="@(Model.Idnp)" class="text-danger"></span>
 
                         </div>
                     </div>
+
+                    <div class="row mt-2">
+                        <label class="col-sm-4">Email</label>
+                        <div class="col-sm-8">
+
+                            <input type="text" asp-for="@(Model.Email)" class="form-control" id="email" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <label class="col-sm-4">Phone</label>
+                        <div class="col-sm-8">
+                            <input type="text" asp-for="@(Model.Phone)" class="form-control" id="phone" />
+                        </div>
+                    </div>
+
 
 
                     <div class="row mt-2">
