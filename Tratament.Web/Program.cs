@@ -1,14 +1,26 @@
+using QuestPDF.Infrastructure;
+using Tratament.Web.DocumentService.IDocumentService;
+using Tratament.Web.DocumentService.Workers;
+
 internal class Program
 {
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        // Set the QuestPDF license type to Community
+        QuestPDF.Settings.License = LicenseType.Community;
+
         // Add services
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
+        #region Dependency Injection
+        
+        builder.Services.AddScoped<IPdfGenerator, PdfGenerator>();
+
+        #endregion
 
         var app = builder.Build();
 

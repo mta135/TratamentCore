@@ -1,11 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Tratament.Web.DocumentService.IDocumentService;
 using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Controllers
 {
     public class SendRequestController : Controller
     {
+
+        private readonly IPdfGenerator pdfGenerator;
+
+        public SendRequestController(IPdfGenerator pdfGenerator)
+        {    
+            this.pdfGenerator = pdfGenerator;
+        }
+
+
 
         [HttpGet]
         public IActionResult Send()
