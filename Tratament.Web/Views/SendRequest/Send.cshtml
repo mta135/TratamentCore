@@ -2,6 +2,15 @@
 
 @model Tratament.Web.ViewModels.SendRequest.SendRequestViewModel
 
+@using Microsoft.Extensions.Options
+@using DNTCaptcha.Core
+
+@inject IOptions<DNTCaptchaOptions> Options
+@{
+    ViewBag.Title = "Login";
+    var refreshButtonId = Options.Value.CaptchaClass + "RefreshButton";
+}
+
 
 <div class="container">
 
@@ -11,7 +20,13 @@
         </div>
     </div>
 
-    <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm">
+    <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm"
+          
+          data-ajax="true"
+                  data-ajax-success="dataAjaxSuccess"
+          
+          
+          >
 
         <div class="mt-5">
 
@@ -90,6 +105,44 @@
 
                         </div>
                     </div>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+
+                            <div>
+                                <dnt-captcha asp-captcha-generator-max="30"
+                                             asp-captcha-generator-min="1"
+                                             asp-captcha-generator-language="English"
+                                             asp-captcha-generator-display-mode="ShowDigits"
+
+                                             asp-use-relative-urls="true"
+                                             asp-placeholder="Security code as a number"
+                                             asp-validation-error-message="Please enter the security code as a number."
+                                             asp-too-many-requests-error-message="Too many requests! Please wait a minute!"
+                                             asp-font-name="Tahoma"
+                                             asp-font-size="40"
+                                             asp-fore-color="#333333"
+
+                                             asp-back-color="#FCF6F5FF"
+                                             asp-text-box-class="form-control"
+                                             asp-text-box-template="<div class='input-group'><span class='input-group-text'><span class='bi-lock'></span></span>{0}</div>"
+                                             
+                                             asp-validation-message-class="text-danger"
+                                             asp-refresh-button-class="bi-arrow-counterclockwise btn-lg"
+                                             asp-show-refresh-button="true"
+                                             asp-dir="ltr" />
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
 
                     <div class="row mt-2">
                         <div class="col-sm-12">
@@ -269,8 +322,13 @@
         }
     }
 
+
+     function dataAjaxSuccess(data, status, xhr) {
+        alert('Success!');
+         $("#sendRequestForm #@refreshButtonId").click(); // refresh captcha
+    }
+
 </script>
 
 
 
-          

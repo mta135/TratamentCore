@@ -1,3 +1,4 @@
+using DNTCaptcha.Core;
 using QuestPDF.Infrastructure;
 using Tratament.Web.DocumentService.IDocumentService;
 using Tratament.Web.DocumentService.Workers;
@@ -16,8 +17,35 @@ internal class Program
 
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
+
+
+
+
+
+        builder.Services.AddDNTCaptcha(options =>
+               options.UseCookieStorageProvider(SameSiteMode.None)
+                   .ShowThousandsSeparators(false)
+                   .WithEncryptionKey("12345")
+                   );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         #region Dependency Injection
-        
+
         builder.Services.AddScoped<IPdfGenerator, PdfGenerator>();
 
         #endregion
