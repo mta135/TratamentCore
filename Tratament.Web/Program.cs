@@ -2,6 +2,7 @@ using DNTCaptcha.Core;
 using QuestPDF.Infrastructure;
 using Tratament.Web.DocumentService.IDocumentService;
 using Tratament.Web.DocumentService.Workers;
+using Tratament.Web.Options;
 
 internal class Program
 {
@@ -18,9 +19,11 @@ internal class Program
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 
+        builder.Services.Configure<RecaptchatOption>(builder.Configuration.GetSection(nameof(RecaptchatOption)));
 
 
 
+        #region DNT Captcha
 
         builder.Services.AddDNTCaptcha(options =>
                options.UseCookieStorageProvider(SameSiteMode.None)
@@ -28,7 +31,7 @@ internal class Program
                    .WithEncryptionKey("12345")
                    );
 
-
+        #endregion
 
 
 

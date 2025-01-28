@@ -11,7 +11,6 @@
     var refreshButtonId = Options.Value.CaptchaClass + "RefreshButton";
 }
 
-
 <div class="container">
 
     <div class="row mt-3">
@@ -21,12 +20,8 @@
     </div>
 
     <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm"
-          
           data-ajax="true"
-                  data-ajax-success="dataAjaxSuccess"
-          
-          
-          >
+          data-ajax-success="dataAjaxSuccess">
 
         <div class="mt-5">
 
@@ -106,10 +101,15 @@
                         </div>
                     </div>
 
+                    @*<div class="row">
+                            <div class="col-sm-12">
+                                @await Html.PartialAsync("~/Views/Partials/Captcha_Partial.cshtml")
+                            </div>
+                        </div>*@
+
                     <div class="row">
                         <div class="col-sm-12">
-
-                            @await Html.PartialAsync("~/Views/Partials/Captcha_Partial.cshtml")
+                            <div class="g-recaptcha" data-sitekey="6LfhmMUqAAAAABSpqfDlhfdvvKMg3jccco87HB1S"> </div>
                         </div>
                     </div>
 
@@ -117,7 +117,6 @@
                         <div class="col-sm-12">
                             <button type="submit" class="btn btn-primary">Aplicat</button>
                         </div>
-
                     </div>
 
                 </div>
@@ -125,7 +124,6 @@
                 <div class="col-sm-7">
 
                     <div id="DisabilitiesTreatmentTickets" style="display:none">
-
                         @await Html.PartialAsync("~/Views/Partials/DisabilitiesTreatmentTicketsUtil_Partial.cshtml")
                     </div>
 
