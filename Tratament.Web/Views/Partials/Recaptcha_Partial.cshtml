@@ -1,0 +1,8 @@
+﻿
+
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
+@inject Microsoft.Extensions.Options.IOptions<Tratament.Web.Recaptcha.RecaptchaHelpers.RecaptchatOption> RecaptchaOptions
+
+@Html.Raw(Tratament.Web.Recaptcha.RecaptchaHelpers.RecaptchaHelper.GenerateRecaptchaHtml(RecaptchaOptions.Value.SiteKey))

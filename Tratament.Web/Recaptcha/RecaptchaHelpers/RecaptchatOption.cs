@@ -1,4 +1,4 @@
-﻿namespace Tratament.Web.Options
+﻿namespace Tratament.Web.Recaptcha.RecaptchaHelpers
 {
     public class RecaptchatOption
     {

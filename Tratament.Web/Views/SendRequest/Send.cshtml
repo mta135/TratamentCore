@@ -3,12 +3,9 @@
 @model Tratament.Web.ViewModels.SendRequest.SendRequestViewModel
 
 @using Microsoft.Extensions.Options
-@using DNTCaptcha.Core
 
-@inject IOptions<DNTCaptchaOptions> Options
 @{
-    ViewBag.Title = "Login";
-    var refreshButtonId = Options.Value.CaptchaClass + "RefreshButton";
+    ViewBag.Title = "Send Request";
 }
 
 <div class="container">
@@ -19,9 +16,10 @@
         </div>
     </div>
 
-    <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm"
-          data-ajax="true"
-          data-ajax-success="dataAjaxSuccess">
+    <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm" >
+
+          
+         
 
         <div class="mt-5">
 
@@ -109,7 +107,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="g-recaptcha" data-sitekey="6LfhmMUqAAAAABSpqfDlhfdvvKMg3jccco87HB1S"> </div>
+                            @await Html.PartialAsync("~/Views/Partials/Recaptcha_Partial.cshtml")
                         </div>
                     </div>
 
@@ -287,12 +285,6 @@
         if (e.target.checked && IsVisible(checkbox)) {
             $(divElement).hide();
         }
-    }
-
-
-     function dataAjaxSuccess(data, status, xhr) {
-        alert('Success!');
-         $("#sendRequestForm #@refreshButtonId").click(); // refresh captcha
     }
 
 </script>

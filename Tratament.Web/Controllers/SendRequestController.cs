@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Options;
 using Tratament.Web.DocumentService.IDocumentService;
-using Tratament.Web.Options;
+using Tratament.Web.Recaptcha.Interface;
+using Tratament.Web.Recaptcha.RecaptchaHelpers;
 using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Controllers
@@ -12,14 +12,13 @@ namespace Tratament.Web.Controllers
 
         private readonly IPdfGenerator pdfGenerator;
 
-        private readonly RecaptchatOption recaptchatOption;
-        private readonly RecaptchaHelper recaptchaHelper;
+        private readonly IRecaptchaService _recaptchaService;
 
-        public SendRequestController(IPdfGenerator pdfGenerator, IOptions<RecaptchatOption> options)
+        public SendRequestController(IPdfGenerator pdfGenerator, IRecaptchaService recaptchaService)
         {    
             this.pdfGenerator = pdfGenerator;
-            recaptchatOption = options.Value;
-            recaptchaHelper = new RecaptchaHelper(options);
+
+            _recaptchaService = recaptchaService;
         }
 
 
@@ -31,25 +30,23 @@ namespace Tratament.Web.Controllers
 
             ViewBag.TicketTypes = GetTicketTypes();
 
-
             return View(requestViewModel);
         }
 
 
         [HttpPost]
-        public IActionResult Send(SendRequestViewModel requestViewModel)
+        public async Task<IActionResult> Send(SendRequestViewModel requestViewModel)
         {
             ViewBag.TicketTypes = GetTicketTypes();
 
             string captchaResponse = Request.Form["g-recaptcha-response"].ToString();
-            var validate = recaptchaHelper.ValidateCaptha(captchaResponse);
 
-            if (!validate.Success)
+            if (!await _recaptchaService.VerifyRecaptchaAsync(captchaResponse))
             {
                 RedirectToAction("Send", requestViewModel);
             }
 
-            return RedirectToAction("/SendRequest/Submited", requestViewModel);
+            return RedirectToAction("Submited", "SendRequest");
         }
 
 
