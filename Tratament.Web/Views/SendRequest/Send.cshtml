@@ -18,9 +18,6 @@
 
     <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm" >
 
-          
-         
-
         <div class="mt-5">
 
             <div class="row">
@@ -100,10 +97,10 @@
                     </div>
 
                     @*<div class="row">
-                            <div class="col-sm-12">
-                                @await Html.PartialAsync("~/Views/Partials/Captcha_Partial.cshtml")
-                            </div>
-                        </div>*@
+                        <div class="col-sm-12">
+                            @await Html.PartialAsync("~/Views/Partials/DntCaptcha_Partial.cshtml")
+                        </div>
+                    </div>*@
 
                     <div class="row">
                         <div class="col-sm-12">
