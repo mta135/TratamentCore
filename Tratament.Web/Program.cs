@@ -5,6 +5,8 @@ using Tratament.Web.DocumentService.Workers;
 using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.Recaptcha;
 using Tratament.Web.Recaptcha.RecaptchaHelpers;
+using MAIeDosar.API.Services.MConnect;
+using System.ComponentModel;
 
 internal class Program
 {
@@ -38,6 +40,7 @@ internal class Program
         #region Dependency Injection
 
         builder.Services.AddScoped<IPdfGenerator, PdfGenerator>();
+        builder.Services.AddScoped<IMConnectService, MConnectService>();
 
         #endregion
 

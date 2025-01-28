@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MAIeDosar.API.ApiViewModels.ExternalServices;
+using MAIeDosar.API.Services.MConnect;
+using MAIeDosar.API.ServicesModels.Civil;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Tratament.Web.DocumentService.IDocumentService;
 using Tratament.Web.Recaptcha.Interface;
@@ -14,14 +17,14 @@ namespace Tratament.Web.Controllers
 
         private readonly IRecaptchaService _recaptchaService;
 
-        public SendRequestController(IPdfGenerator pdfGenerator, IRecaptchaService recaptchaService)
+        private readonly IMConnectService _mConnectService;
+
+        public SendRequestController(IPdfGenerator pdfGenerator, IRecaptchaService recaptchaService, IMConnectService mConnectService)
         {    
             this.pdfGenerator = pdfGenerator;
-
             _recaptchaService = recaptchaService;
+            _mConnectService = mConnectService;
         }
-
-
 
         [HttpGet]
         public IActionResult Send()
@@ -66,6 +69,19 @@ namespace Tratament.Web.Controllers
             };
 
             return pensionType;
+        }
+
+
+        
+        public async Task<IActionResult> TestMconnect()
+        {
+            PersonFilter personFilter = new PersonFilter();
+            personFilter.IDNP = "2004023011612";
+
+            PersonAPIModel personAPI = await _mConnectService.GetPerson(personFilter);
+
+
+            return View();
         }
     }
 }
