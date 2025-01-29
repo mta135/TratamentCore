@@ -15,13 +15,15 @@ namespace Tratament.Web.DocumentService.Workers
             {
                 container.Page(page =>
                 {
-                    page.Size(PageSizes.A4);
-
-                    page.Margin(50);
+                    page.Size(PageSizes.A5.Landscape());
+                    page.Margin(30);
                     page.Content().Column(column =>
                     {
-                        column.Item().Text("Hello, QuestPDF!").FontSize(20).Bold();
-                        column.Item().Text("This is a simple PDF document created using QuestPDF.").FontSize(14);
+                        column.Spacing(5); // Adds space between lines
+
+                        column.Item().Text("First line of text").FontSize(12);
+                        column.Item().Text("Second line of text").FontSize(12);
+                        column.Item().Text("Third line of text").FontSize(12);
                     });
                 });
 
