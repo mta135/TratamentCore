@@ -56,8 +56,8 @@ namespace MAIeDosar.API.Services.MConnect
             string soapAction = type == MConnectActionType.Person ? _configuration.GetValue<string>("MConnect:GetPerson")
                                                                     : _configuration.GetValue<string>("MConnect:GetLegalEntity");
 
-            string callingUser =  "2002048034560"; // if null set default
-            string RequestHeaders = $"CallingEntity: 1006600054871\r\nCallingUser: {callingUser} \r\nCallBasis: MAI Officer -Apealarea serviciului pentru dosar penal\r\nCallReason: MAI Dosar process - accesarea la registru";
+            string callingUser = "1004600030235"; // if null set default
+            string RequestHeaders = $"CallingEntity: 1004600030235\r\nCallingUser: {callingUser} \r\nCallBasis: cnas\r\nCallReason: cnas";
 
             //Здесь строится XML Request в зависимости от type
             var content = mCClient.BuildContent(parameter, type);
