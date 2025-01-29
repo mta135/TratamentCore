@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using QuestPDF.Fluent;
+﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
-using System.Data.Common;
-using Tratament.Web.DocumentService.IDocumentService;
 
-namespace Tratament.Web.DocumentService.Workers
+namespace Tratament.Web.Core
 {
-    public class PdfGenerator : IPdfGenerator
+    public class PdfDocumentProcessor
     {
-
         public byte[] GeneratePdfDocument()
         {
             byte[] pdfDocument = null;
@@ -23,7 +19,7 @@ namespace Tratament.Web.DocumentService.Workers
 
                     page.Content().Column(column =>
                     {
-                        column.Spacing(20); 
+                        column.Spacing(20);
 
                         column.Item().AlignCenter().Text("Recipisa").FontSize(20).Bold();
 
@@ -43,8 +39,8 @@ namespace Tratament.Web.DocumentService.Workers
                             innerColumn.Spacing(10);
 
                             innerColumn.Item().Text("Cererea depusă de către: " + "9713657892145").FontSize(14);
-                            innerColumn.Item().Text("Tipul solicitării: "  + "Bilete la cernobil").FontSize(14);
-                            innerColumn.Item().Text("Numărul cererii: " +"685").FontSize(14);
+                            innerColumn.Item().Text("Tipul solicitării: " + "Bilete la cernobil").FontSize(14);
+                            innerColumn.Item().Text("Numărul cererii: " + "685").FontSize(14);
                             innerColumn.Item().Text("Data depunerii: 2024/01/23").FontSize(14);
 
                             innerColumn.Item().Text("Detalii: Cererea a fost acceptat cu succes").FontSize(14);
@@ -64,3 +60,4 @@ namespace Tratament.Web.DocumentService.Workers
 
     }
 }
+

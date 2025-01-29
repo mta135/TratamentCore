@@ -1,13 +1,9 @@
 using DNTCaptcha.Core;
 using QuestPDF.Infrastructure;
-using Tratament.Web.DocumentService.IDocumentService;
-using Tratament.Web.DocumentService.Workers;
 using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.Recaptcha;
 using Tratament.Web.Recaptcha.RecaptchaHelpers;
 using MAIeDosar.API.Services.MConnect;
-using System.ComponentModel;
-using Microsoft.Extensions.Configuration;
 
 internal class Program
 {
@@ -41,7 +37,6 @@ internal class Program
 
         #region Dependency Injection
 
-        builder.Services.AddScoped<IPdfGenerator, PdfGenerator>();
         builder.Services.AddScoped<IMConnectService, MConnectService>();
 
         #endregion
@@ -51,9 +46,6 @@ internal class Program
         MccCertificateConfig.InitializeSettings(configuration);
 
         #endregion
-
-
-
 
         var app = builder.Build();
 

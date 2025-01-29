@@ -3,9 +3,7 @@ using MAIeDosar.API.Services.MConnect;
 using MAIeDosar.API.ServicesModels.Civil;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Tratament.Web.DocumentService.IDocumentService;
 using Tratament.Web.Recaptcha.Interface;
-using Tratament.Web.Recaptcha.RecaptchaHelpers;
 using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Controllers
@@ -13,15 +11,14 @@ namespace Tratament.Web.Controllers
     public class SendRequestController : Controller
     {
 
-        private readonly IPdfGenerator pdfGenerator;
+
 
         private readonly IRecaptchaService _recaptchaService;
 
         private readonly IMConnectService _mConnectService;
 
-        public SendRequestController(IPdfGenerator pdfGenerator, IRecaptchaService recaptchaService, IMConnectService mConnectService)
+        public SendRequestController( IRecaptchaService recaptchaService, IMConnectService mConnectService)
         {    
-            this.pdfGenerator = pdfGenerator;
             _recaptchaService = recaptchaService;
             _mConnectService = mConnectService;
         }
