@@ -1,11 +1,12 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
+using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Core
 {
     public class PdfDocumentProcessor
     {
-        public byte[] GeneratePdfDocument()
+        public byte[] GeneratePdfDocument(SubmitViewModel submitViewModel)
         {
             byte[] pdfDocument = null;
 
