@@ -49,9 +49,13 @@ namespace Tratament.Web.DocumentService.Workers
                         {
                             innerColumn.Spacing(10);
 
-                            innerColumn.Item().Text("First line of text").FontSize(14);
-                            innerColumn.Item().Text("Second line of text").FontSize(14);
-                            innerColumn.Item().Text("Third line of text").FontSize(14);
+                            innerColumn.Item().Text("Cererea depusă de către IDNP").FontSize(14);
+                            innerColumn.Item().Text("Tipul solicitării").FontSize(14);
+                            innerColumn.Item().Text("Numărul cererii").FontSize(14);
+                            innerColumn.Item().Text("Data depunerii").FontSize(14);
+
+
+                            innerColumn.Item().Text("Detalii: ").FontSize(14);
 
                             innerColumn.Item().LineHorizontal(1);
 
