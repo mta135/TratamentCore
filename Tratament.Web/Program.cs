@@ -7,6 +7,7 @@ using Tratament.Web.Recaptcha;
 using Tratament.Web.Recaptcha.RecaptchaHelpers;
 using MAIeDosar.API.Services.MConnect;
 using System.ComponentModel;
+using Microsoft.Extensions.Configuration;
 
 internal class Program
 {
@@ -21,6 +22,7 @@ internal class Program
         builder.Services.AddControllersWithViews();
 
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+        var configuration = builder.Configuration;
 
         #region reCaptcha V3
 
@@ -43,6 +45,15 @@ internal class Program
         builder.Services.AddScoped<IMConnectService, MConnectService>();
 
         #endregion
+
+        #region InitializeSettings
+
+        MccCertificateConfig.InitializeSettings(configuration);
+
+        #endregion
+
+
+
 
         var app = builder.Build();
 
