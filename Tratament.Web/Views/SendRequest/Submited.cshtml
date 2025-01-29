@@ -1,4 +1,4 @@
-﻿
+﻿@model Tratament.Web.ViewModels.SendRequest.SubmitViewModel
 
 <div class="container">
 
@@ -7,6 +7,32 @@
             <h6>Datale au fost tranisme la cnas</h6>
         </div>
     </div>
+
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <p>Cereare depusa de catre: @(Model.Idnp)</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Tipul Tickhetului: @(Model.TicketType)</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Numarul cererii: @(Model.RequestNumber)</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Data depunerii cererii: @(Model.RequestSubmitDate?.ToShortDateString())</p>
+        </div>
+    </div>
+
+
 
     <hr />
 

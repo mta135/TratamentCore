@@ -53,9 +53,14 @@ namespace Tratament.Web.Controllers
         }
 
 
+
         public IActionResult Submited()
         {
-            return View();
+            SubmitViewModel submitViewModel = new SubmitViewModel();
+
+
+
+            return View(submitViewModel);
         }
 
         private List<SelectListItem> GetTicketTypes()
