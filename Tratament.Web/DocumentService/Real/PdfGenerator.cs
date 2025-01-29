@@ -52,12 +52,16 @@ namespace Tratament.Web.DocumentService.Workers
                             innerColumn.Item().Text("First line of text").FontSize(14);
                             innerColumn.Item().Text("Second line of text").FontSize(14);
                             innerColumn.Item().Text("Third line of text").FontSize(14);
+
+                            innerColumn.Item().LineHorizontal(1);
+
+                            // Text below the horizontal line
+                            innerColumn.Item().Text("Nota: Statului cererii poate fi verificat pe perioada de 2 luni")
+                                .FontSize(12).Italic();
+
                         });
                     });
                 });
-
-
-
 
             }).GeneratePdf();
 
