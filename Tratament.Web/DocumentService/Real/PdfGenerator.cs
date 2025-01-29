@@ -32,12 +32,14 @@ namespace Tratament.Web.DocumentService.Workers
                         // Right-aligned container for "Casa Nationala de Asigurari Sociale" and "Data recipisei"
                         column.Item().AlignRight().Column(rightColumn =>
                         {
+                            rightColumn.Spacing(10); // Adds space between items
+
                             rightColumn.Item().Text("Casa Nationala de Asigurari Sociale")
                                 .FontSize(14)
                                 .Bold()
                                 .AlignRight(); // Ensures it stays on the right
 
-                            rightColumn.Item().Text("Data recipisei")
+                            rightColumn.Item().Text("Data recipisei: 2024/01/23")
                                 .FontSize(14)
                                 .AlignCenter(); // Centers it below the first text
                         });
