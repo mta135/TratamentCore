@@ -19,6 +19,7 @@ namespace Tratament.Web.DocumentService.Workers
                 {
                     page.Size(PageSizes.A5.Landscape()); // A5 in Landscape mode
                     page.Margin(30);
+                    page.DefaultTextStyle(x => x.FontSize(12).FontFamily("Times New Roman"));
 
                     page.Content().Column(column =>
                     {
@@ -30,9 +31,9 @@ namespace Tratament.Web.DocumentService.Workers
                         {
                             rightColumn.Spacing(10); // Adds space between items
 
-                            rightColumn.Item().Text("Casa Nationala de Asigurari Sociale").FontSize(14).Bold().AlignRight(); 
+                            rightColumn.Item().Text("Casa Nationala de Asigurari Sociale").FontSize(14).Bold().AlignRight();
 
-                            rightColumn.Item().Text("Data recipisei: 2024/01/23").FontSize(14).AlignCenter(); 
+                            rightColumn.Item().Text("Data recipisei: 2024/01/23").FontSize(14).AlignCenter();
 
                         });
 
@@ -43,10 +44,10 @@ namespace Tratament.Web.DocumentService.Workers
 
                             innerColumn.Item().Text("Cererea depusă de către: " + "9713657892145").FontSize(14);
                             innerColumn.Item().Text("Tipul solicitării: "  + "Bilete la cernobil").FontSize(14);
-                            innerColumn.Item().Text("Numărul cererii").FontSize(14);
-                            innerColumn.Item().Text("Data depunerii").FontSize(14);
+                            innerColumn.Item().Text("Numărul cererii: " +"685").FontSize(14);
+                            innerColumn.Item().Text("Data depunerii: 2024/01/23").FontSize(14);
 
-                            innerColumn.Item().Text("Detalii: ").FontSize(14);
+                            innerColumn.Item().Text("Detalii: Cererea a fost acceptat cu succes").FontSize(14);
 
                             innerColumn.Item().LineHorizontal(1);
 
