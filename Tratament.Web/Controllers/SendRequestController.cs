@@ -43,7 +43,8 @@ namespace Tratament.Web.Controllers
 
             if (!await _recaptchaService.VerifyRecaptchaAsync(captchaResponse))
             {
-                RedirectToAction("Send", requestViewModel);
+                ViewBag.IsVerified = true;
+                return View("Send");
             }
 
             return RedirectToAction("Submited", "SendRequest");

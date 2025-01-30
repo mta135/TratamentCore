@@ -97,16 +97,23 @@
                     </div>
 
                     @*<div class="row">
-                        <div class="col-sm-12">
-                            @await Html.PartialAsync("~/Views/Partials/DntCaptcha_Partial.cshtml")
-                        </div>
-                    </div>*@
+            <div class="col-sm-12">
+                @await Html.PartialAsync("~/Views/Partials/DntCaptcha_Partial.cshtml")
+            </div>
+        </div>*@
 
                     <div class="row">
                         <div class="col-sm-12">
                             @await Html.PartialAsync("~/Views/Partials/Recaptcha_Partial.cshtml")
                         </div>
                     </div>
+
+                    @if (ViewBag.IsVerified == true)
+                    {
+                        <div class="alert alert-danger mt-2" role="alert">
+                            Nu a fost bifata validarea !
+                        </div>
+                    }
 
                     <div class="row mt-2">
                         <div class="col-sm-12">
