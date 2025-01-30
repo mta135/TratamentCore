@@ -183,47 +183,7 @@
 
     function PensionTypeSelectItem() {
 
-        var ticketTypeId = GetTicketTypeId(); 
-
-        HideMultipleDivs(utilDivIds);
-
-        HideMultipleDivs(confirmDivsId);
-
-        switch (ticketTypeId) {
-            case "1":
-                ShowUtilDivs(document.getElementById("DisabilitiesTreatmentTickets"));
-
-                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
-                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
-                break;
-
-            case "2":
-                ShowUtilDivs(document.getElementById("VeteransTreatmentTickets"));
-
-                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
-                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
-                break;
-
-            case "3":
-                ShowUtilDivs(document.getElementById("TicketsForCernobil"));
-
-                ShowUtilDivs(document.getElementById("CernobilTicketsConfirm"));
-                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
-
-                break;
-
-            case "4":
-                ShowUtilDivs(document.getElementById("PaymentCompensation"));
-
-                ShowUtilDivs(document.getElementById("PaymentCompensationConfirm"));
-                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
-
-                break;
-
-            default:
-                // If no valid selection, keep all divs hidden
-                break;
-        }
+        ShowOrHideDivsByPensionTypeId();
     }
 
     function HideUtilDivs(divElement) {
@@ -287,6 +247,59 @@
 
         return getvalue;
     }
+
+    function ShowOrHideDivsByPensionTypeId() {
+
+        debugger;
+
+        var ticketTypeId = GetTicketTypeId();
+
+        HideMultipleDivs(utilDivIds);
+
+        HideMultipleDivs(confirmDivsId);
+
+        switch (ticketTypeId) {
+            case "1":
+                ShowUtilDivs(document.getElementById("DisabilitiesTreatmentTickets"));
+
+                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+                break;
+
+            case "2":
+                ShowUtilDivs(document.getElementById("VeteransTreatmentTickets"));
+
+                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+                break;
+
+            case "3":
+                ShowUtilDivs(document.getElementById("TicketsForCernobil"));
+
+                ShowUtilDivs(document.getElementById("CernobilTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+
+                break;
+
+            case "4":
+                ShowUtilDivs(document.getElementById("PaymentCompensation"));
+
+                ShowUtilDivs(document.getElementById("PaymentCompensationConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+
+                break;
+
+            default:
+                // If no valid selection, keep all divs hidden
+                break;
+        }
+    }
+
+    window.addEventListener('load', function () {
+        console.log("Window load event; Seleted Item Id: " + GetTicketTypeId());
+
+        ShowOrHideDivsByPensionTypeId();
+    })
 
 </script>
 

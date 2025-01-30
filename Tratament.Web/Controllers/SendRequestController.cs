@@ -10,9 +10,6 @@ namespace Tratament.Web.Controllers
 {
     public class SendRequestController : Controller
     {
-
-
-
         private readonly IRecaptchaService _recaptchaService;
 
         private readonly IMConnectService _mConnectService;
@@ -33,7 +30,6 @@ namespace Tratament.Web.Controllers
             return View(requestViewModel);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Send(SendRequestViewModel requestViewModel)
         {
@@ -50,13 +46,10 @@ namespace Tratament.Web.Controllers
             return RedirectToAction("Submited", "SendRequest");
         }
 
-
-
+        [HttpGet]
         public IActionResult Submited()
         {
             SubmitViewModel submitViewModel = new SubmitViewModel();
-
-
 
             return View(submitViewModel);
         }
@@ -74,8 +67,6 @@ namespace Tratament.Web.Controllers
             return pensionType;
         }
 
-
-        
         public async Task<IActionResult> TestMconnect()
         {
             PersonFilter personFilter = new PersonFilter();
