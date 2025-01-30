@@ -28,7 +28,7 @@
                         <label class="col-sm-4">Tipul pensiei</label>
                         <div class="col-sm-8">
 
-                            <select asp-for="@(Model.TicketTypeId)" asp-items="@(ViewBag.TicketTypes)" class="form-control" id="tiketType" onchange="GetPensionTypeSelectedItem()">
+                            <select asp-for="@(Model.TicketTypeId)" asp-items="@(ViewBag.TicketTypes)" class="form-control" id="tiketType" onchange="PensionTypeSelectItem()">
                                 <option selected value="">Alege Tipul tichetului</option>
                             </select>
                             <span asp-validation-for="@(Model.TicketTypeId)" class="text-danger"></span>
@@ -151,32 +151,38 @@
 
 <script type="text/javascript">
 
-    function GetPensionTypeSelectedItem() {
+    var utilDivIds = [
+        "DisabilitiesTreatmentTickets",
+        "VeteransTreatmentTickets",
+        "TicketsForCernobil",
+        "PaymentCompensation"
+    ];
 
-        var utilDivIds = [
-            "DisabilitiesTreatmentTickets",
-            "VeteransTreatmentTickets",
-            "TicketsForCernobil",
-            "PaymentCompensation"
-        ];
+    var confirmDivsId = [
+        "ConfirmCorectData",
+        "DisabilitiesTicketsConfirm",
+        "VeteransTicketsConfirm",
+        "CernobilTicketsConfirm",
+        "PaymentCompensationConfirm"
+    ];
 
+    var errorCorrectData = document.getElementById('error-corect-data');
 
-        var confirmDivsId = [
-            "ConfirmCorectData",
-            "DisabilitiesTicketsConfirm",
-            "VeteransTicketsConfirm",
-            "CernobilTicketsConfirm",
-            "PaymentCompensationConfirm"
-        ];
+    const correctDataCheckbox = document.querySelector('#CorrectData');
+    correctDataCheckbox.addEventListener('change', HandleChange);
 
-        var value = document.getElementById("tiketType");
-        var getvalue = value.options[value.selectedIndex].value;
+    var sendRequestForm = document.getElementById('sendRequestForm');
+    sendRequestForm.addEventListener('submit', SubmitRequestDataForm)
+
+    function PensionTypeSelectItem() {
+
+        var ticketTypeId = GetTicketTypeId(); 
 
         HideMultipleDivs(utilDivIds);
 
         HideMultipleDivs(confirmDivsId);
 
-        switch (getvalue) {
+        switch (ticketTypeId) {
             case "1":
                 ShowUtilDivs(document.getElementById("DisabilitiesTreatmentTickets"));
 
@@ -234,34 +240,16 @@
         });
     }
 
-    document.getElementById('sendRequestForm').addEventListener('submit', function (event) {
-
-        debugger;
-
-        var correctData = document.getElementById('CorrectData');
-
-        if (IsVisible(correctData)) {
-            ValidateCorrectData(event);
-        }
-    });
-
     function ValidateCorrectData(event) {
 
-        var correctData = document.getElementById('CorrectData');
-        var errorCorrectData = document.getElementById('error-corect-data');
+        if (!correctDataCheckbox.checked) {
 
-        if (!correctData.checked) {
-
-            PreventSubmit(event);
+            event.preventDefault();
             errorCorrectData.style.display = 'block';
 
         } else {
             errorCorrectData.style.display = 'none';
         }
-    }
-
-    function PreventSubmit(event) {
-        event.preventDefault();
     }
 
     function IsVisible(divElement) {
@@ -272,16 +260,25 @@
         return false;
     }
 
-    const checkbox = document.querySelector('#CorrectData');
-
-    const divElement = document.querySelector('#error-corect-data');
-
-    checkbox.addEventListener('change', handleChange);
-
-    function handleChange(e) {
-        if (e.target.checked && IsVisible(checkbox)) {
-            $(divElement).hide();
+    function HandleChange(e) {
+        if (e.target.checked && IsVisible(correctDataCheckbox)) {
+            $(errorCorrectData).hide();
         }
+    }
+
+    function SubmitRequestDataForm(e) {
+
+        if (IsVisible(correctDataCheckbox)) {
+            ValidateCorrectData(event);
+        }
+    }
+
+    function GetTicketTypeId() {
+
+        var value = document.getElementById("tiketType");
+        var getvalue = value.options[value.selectedIndex].value;
+
+        return getvalue;
     }
 
 </script>
