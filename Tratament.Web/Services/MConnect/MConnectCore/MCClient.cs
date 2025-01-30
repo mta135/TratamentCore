@@ -35,9 +35,7 @@ namespace MAIeDosar.API.Services.MConnect
 
         public string BuildContent(string parameter, MConnectActionType type)
         {
-
-            string result = type == MConnectActionType.Person ? BuildContentXML("GetPerson", "IDNP", parameter)
-                                                                : BuildContentXML("GetLegalEntity", "IDNO", parameter);
+            string result = type == MConnectActionType.Person ? BuildContentXML("GetPersonDataForActualization", "IDNP", parameter) : BuildContentXML("GetLegalEntity", "IDNO", parameter);
 
             return result;
         }
@@ -47,6 +45,8 @@ namespace MAIeDosar.API.Services.MConnect
             XNamespace mcon = "https://mconnect.gov.md";
             XElement root = new XElement(mcon + actionType,
                 new XAttribute(XNamespace.Xmlns + "mcon", "https://mconnect.gov.md"),
+
+                new XElement(mcon + "IDNO", "1004600030235"),
                 new XElement(mcon + paramName, param)
             );
 

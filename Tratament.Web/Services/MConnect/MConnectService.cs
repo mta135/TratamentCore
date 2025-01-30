@@ -56,7 +56,7 @@ namespace MAIeDosar.API.Services.MConnect
             string soapAction = type == MConnectActionType.Person ? _configuration.GetValue<string>("MConnect:GetPerson")
                                                                     : _configuration.GetValue<string>("MConnect:GetLegalEntity");
 
-            string callingUser = "1004600030235"; // if null set default
+            string callingUser = "2023500186809"; // if null set default
             string RequestHeaders = $"CallingEntity: 1004600030235\r\nCallingUser: {callingUser} \r\nCallBasis: cnas\r\nCallReason: cnas";
 
             //Здесь строится XML Request в зависимости от type

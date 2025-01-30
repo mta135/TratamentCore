@@ -78,7 +78,7 @@ namespace Tratament.Web.Controllers
         public async Task<IActionResult> TestMconnect()
         {
             PersonFilter personFilter = new PersonFilter();
-            personFilter.IDNP = "2004023011612";
+            personFilter.IDNP = "2023500186809";
 
             PersonAPIModel personAPI = await _mConnectService.GetPerson(personFilter);
 
