@@ -67,6 +67,10 @@ internal class Program
         app.MapDefaultControllerRoute();
         app.MapRazorPages();
 
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=SendRequest}/{action=Send}");
+
         app.UseAntiforgery();
 
         app.Run();

@@ -24,6 +24,13 @@
 
                 <div class="col-sm-5">
 
+                    @if (ViewBag.IsVerified == true)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            Nu a fost bifata verificarea reCAPTCHA. Acest cimp este obligator !
+                        </div>
+                    }
+
                     <div class="row mt-2">
                         <label class="col-sm-4">Tipul pensiei</label>
                         <div class="col-sm-8">
@@ -108,12 +115,6 @@
                         </div>
                     </div>
 
-                    @if (ViewBag.IsVerified == true)
-                    {
-                        <div class="alert alert-danger mt-2" role="alert">
-                            Nu a fost bifata validarea !
-                        </div>
-                    }
                     <div class="row mt-2">
                         <div class="col-sm-12">
                             <button type="submit" class="btn btn-primary">Aplicat</button>
