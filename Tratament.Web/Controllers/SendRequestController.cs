@@ -73,6 +73,7 @@ namespace Tratament.Web.Controllers
             personFilter.IDNP = "2004023011612";
 
             PersonAPIModel personAPI = await _mConnectService.GetPerson(personFilter);
+            var a = 0;
 
 
             return View();
