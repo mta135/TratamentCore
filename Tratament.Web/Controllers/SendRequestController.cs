@@ -3,6 +3,7 @@ using MAIeDosar.API.Services.MConnect;
 using MAIeDosar.API.ServicesModels.Civil;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Tratament.Web.LoggerSetup;
 using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.ViewModels.SendRequest;
 
@@ -23,6 +24,8 @@ namespace Tratament.Web.Controllers
         [HttpGet]
         public IActionResult Send()
         {
+            WriteLog.Common.Debug("SendRequestController/Send");
+            
             SendRequestViewModel requestViewModel = new();
 
             ViewBag.TicketTypes = GetTicketTypes();
