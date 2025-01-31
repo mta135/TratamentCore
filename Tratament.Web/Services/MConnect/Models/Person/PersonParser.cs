@@ -30,38 +30,34 @@ namespace MAIeDosar.API.ServicesModels.PhisicalPerson
                 {
                     XmlNode person = document.GetElementsByTagName("Person")[0];
 
-                    personAPI.Name = person.ChildNodes[1].InnerText; // Имя
-                    personAPI.Surname = person.ChildNodes[0].InnerText;// Фамилия
-                    personAPI.DateOfBirth = Convert.ToDateTime(person.ChildNodes[2].InnerText);
-                    personAPI.Citizenship = person.ChildNodes[3].InnerText;
+                    personAPI.IDNP = person.ChildNodes[0].InnerText;
 
-                    //var Photo = person.ChildNodes[5].InnerText;
-                    XmlNode identityDocument = person.ChildNodes[6]; // IdentityDocument 
+                    personAPI.Name = person.ChildNodes[1].InnerText; 
 
-                    personAPI.Type = Convert.ToInt32(identityDocument.ChildNodes[0].InnerText);
-                    personAPI.Series = identityDocument.ChildNodes[1].InnerText;
-                    personAPI.DocNumber = identityDocument.ChildNodes[2].InnerText;
-                    personAPI.IssueDate = Convert.ToDateTime(identityDocument.ChildNodes[3].InnerText);
-                    personAPI.IssuedBy = identityDocument.ChildNodes[4].InnerText;
-                    personAPI.Status = Convert.ToInt32(identityDocument.ChildNodes[5].InnerText);
+                    personAPI.Surname = person.ChildNodes[2].InnerText;
+                    personAPI.Patronymic = person.ChildNodes[3].InnerText;
 
-                    XmlNode registration = person.ChildNodes[7].ChildNodes[0]; // Registrations
-                    if (registration != null)
+                    personAPI.DateOfBirth = Convert.ToDateTime(person.ChildNodes[4].InnerText);
+
+                    XmlNode address = person.ChildNodes[14];
+
+                    if(address != null)
                     {
-                        personAPI.RegistrationType = Convert.ToInt32(registration.ChildNodes[0].InnerText);
-                        personAPI.RegistrationStatus = Convert.ToInt32(registration.ChildNodes[1].InnerText);
+                        personAPI.PersoneAddress.AdministrativeCode = address.ChildNodes[0].InnerText;
 
-                        XmlNode address = registration.ChildNodes[2]; // Address
-                        if (address != null)
-                        {
-                            personAPI.Country = address.ChildNodes[0].InnerText;
-                            personAPI.Region = address.ChildNodes[1].InnerText;
-                            personAPI.Locality = address.ChildNodes[2].InnerText;
-                            personAPI.Street = address.ChildNodes[4].InnerText;
-                            personAPI.House = address.ChildNodes[5].InnerText;
-                            personAPI.Block = address.ChildNodes[6].InnerText;
-                            personAPI.Flat = address.ChildNodes[7].InnerText;
-                        }
+                        personAPI.PersoneAddress.Block = address.ChildNodes[1].InnerText;
+                        personAPI.PersoneAddress.Country = address.ChildNodes[2].InnerText;
+
+                        personAPI.PersoneAddress.CountyCode = address.ChildNodes[3].InnerText;
+
+                        personAPI.PersoneAddress.Flat = address.ChildNodes[4].InnerText;
+
+                        personAPI.PersoneAddress.House = address.ChildNodes[5].InnerText;
+
+                        personAPI.PersoneAddress.Locality = address.ChildNodes[6].InnerText;
+
+                        personAPI.PersoneAddress.Region = address.ChildNodes[7].InnerText;
+                        personAPI.PersoneAddress.Street = address.ChildNodes[8].InnerText;
                     }
                 }
                 else
@@ -71,7 +67,7 @@ namespace MAIeDosar.API.ServicesModels.PhisicalPerson
             }
             catch (Exception ex)
             {
-                throw new Exception("GetPerson Error: " + ex);
+                throw new Exception("GetPersonDataForActualization  Error: " + ex);
             }
 
             return personAPI;
