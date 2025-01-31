@@ -21,6 +21,18 @@ internal class Program
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
         var configuration = builder.Configuration;
 
+        #region Session
+
+        builder.Services.AddDistributedMemoryCache();
+        builder.Services.AddSession(options =>
+        {
+            options.IdleTimeout = TimeSpan.FromMinutes(20);
+            options.Cookie.HttpOnly = true;
+            options.Cookie.IsEssential = true;
+        });
+
+        #endregion
+
         #region reCaptcha V3
 
         builder.Services.Configure<RecaptchatOption>(builder.Configuration.GetSection(nameof(RecaptchatOption)));
@@ -61,17 +73,15 @@ internal class Program
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 
-        app.UseAuthorization();
-
-
-        app.MapDefaultControllerRoute();
         app.MapRazorPages();
 
+        app.UseRouting();
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=SendRequest}/{action=Send}");
+            pattern: "{controller=SendRequest}/{action=Send}/{id?}");
 
-        app.UseAntiforgery();
+
+        app.UseSession();
 
         app.Run();
     }
