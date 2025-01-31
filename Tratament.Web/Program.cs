@@ -5,6 +5,7 @@ using Tratament.Web.Recaptcha;
 using Tratament.Web.Recaptcha.RecaptchaHelpers;
 using MAIeDosar.API.Services.MConnect;
 using Tratament.Web.Services.MConectService;
+using Tratament.Web.LoggerSetup;
 
 internal class Program
 {
@@ -58,6 +59,8 @@ internal class Program
 
         MccCertificateConfig.InitializeSettings(configuration);
         MConnectHelper.InitializeSettings(configuration);
+
+        WriteLog.InitLoggers();
 
         #endregion
 
