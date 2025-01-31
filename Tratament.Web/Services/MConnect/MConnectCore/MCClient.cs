@@ -42,9 +42,9 @@ namespace MAIeDosar.API.Services.MConnect
 
         private string BuildContentXML(string actionType, string paramName, string param)
         {
-            XNamespace mcon = "https://mconnect.gov.md";
+            XNamespace mcon = "http://cnas.md/";
             XElement root = new XElement(mcon + actionType,
-                new XAttribute(XNamespace.Xmlns + "mcon", "https://mconnect.gov.md"),
+                new XAttribute(XNamespace.Xmlns + "cnas", "http://cnas.md/"),
 
                 new XElement(mcon + "IDNO", "1004600030235"),
                 new XElement(mcon + paramName, param)
