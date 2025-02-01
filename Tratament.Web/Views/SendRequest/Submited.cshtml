@@ -2,37 +2,34 @@
 
 <div class="container">
 
-    <div class="row mt-5">
-        <div class="col-sm-12">
-            <h6>Datale au fost tranisme la cnas</h6>
-        </div>
-    </div>
 
-    <div class="row mt-3">
+    <div class="row mt-4">
         <div class="col-sm-12">
-            <p>Cereare depusa de catre: @(Model.Idnp)</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <p>Tipul Tickhetului: @(Model.TicketType)</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <p>Numarul cererii: @(Model.RequestNumber)</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <p>Data depunerii cererii: @(Model.RequestSubmitDate?.ToShortDateString())</p>
+            <h6>Datale au fost transmise la CNAS</h6>
         </div>
     </div>
 
 
+    <table class="table table-bordered mt-1">
+        <tbody>
+            <tr>
+                <td class="w-50">Cerere depusă de către</td>
+                <td class="w-50">@(Model.Idnp)</td>
+            </tr>
+            <tr>
+                <td class="w-50">Tipul tichetului</td>
+                <td class="w-50">@(Model.TicketType)</td>
+            </tr>
+            <tr>
+                <td class="w-50">Numărul cererii</td>
+                <td class="w-50">@(Model.RequestNumber)</td>
+            </tr>
+            <tr>
+                <td class="w-50">Data depunerii cererii</td>
+                <td class="w-50">@(Model.RequestSubmitDate?.ToShortDateString())</td>
+            </tr>
+        </tbody>
+    </table>
 
     <hr />
 
@@ -42,6 +39,5 @@
         </div>
 
     </div>
-
 
 </div>
