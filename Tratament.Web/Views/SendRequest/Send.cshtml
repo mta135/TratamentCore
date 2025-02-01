@@ -18,7 +18,7 @@
 
     <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm" >
 
-        <div class="mt-5">
+        <div class="mt-1">
 
             <div class="row">
 
@@ -27,7 +27,7 @@
                     @if (ViewBag.IsVerified == true)
                     {
                         <div class="alert alert-danger" role="alert">
-                            Nu a fost bifata verificarea reCAPTCHA. Acest cimp este obligator !
+                            Codul de siguranță este greșit !
                         </div>
                     }
 
@@ -103,17 +103,18 @@
                         </div>
                     </div>
 
-                    @*<div class="row">
-            <div class="col-sm-12">
-                @await Html.PartialAsync("~/Views/Partials/DntCaptcha_Partial.cshtml")
-            </div>
-        </div>*@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            @await Html.PartialAsync("~/Views/Partials/Recaptcha_Partial.cshtml")
+                            @await Html.PartialAsync("~/Views/Partials/DntCaptcha_Partial.cshtml")
                         </div>
                     </div>
+
+                    @*<div class="row">
+            <div class="col-sm-12">
+                @await Html.PartialAsync("~/Views/Partials/Recaptcha_Partial.cshtml")
+            </div>
+        </div>*@
 
                     <div class="row mt-2">
                         <div class="col-sm-12">
@@ -158,25 +159,13 @@
 
 <script type="text/javascript">
 
-    var utilDivIds = [
-        "DisabilitiesTreatmentTickets",
-        "VeteransTreatmentTickets",
-        "TicketsForCernobil",
-        "PaymentCompensation"
-    ];
-
-    var confirmDivsId = [
-        "ConfirmCorectData",
-        "DisabilitiesTicketsConfirm",
-        "VeteransTicketsConfirm",
-        "CernobilTicketsConfirm",
-        "PaymentCompensationConfirm"
-    ];
-
-    var errorCorrectData = document.getElementById('error-corect-data');
-
-    const correctDataCheckbox = document.querySelector('#CorrectData');
-    correctDataCheckbox.addEventListener('change', HandleChange);
+    var utilDivIds = ["DisabilitiesTreatmentTickets", "VeteransTreatmentTickets", "TicketsForCernobil", "PaymentCompensation"];
+        
+    var confirmDivsId = ["ConfirmCorectData", "DisabilitiesTicketsConfirm", "VeteransTicketsConfirm", "CernobilTicketsConfirm", "PaymentCompensationConfirm"];
+     
+    var errorCorrectData = document.getElementById('error-corect-data');       
+        
+    var correctDataCheckbox = document.querySelector('#CorrectData');
 
     var sendRequestForm = document.getElementById('sendRequestForm');
     sendRequestForm.addEventListener('submit', SubmitRequestDataForm)
@@ -227,11 +216,12 @@
         return false;
     }
 
-    function HandleChange(e) {
-        if (e.target.checked && IsVisible(correctDataCheckbox)) {
+    correctDataCheckbox.addEventListener('change', function () {
+
+        if (this.checked && IsVisible(this)) {
             $(errorCorrectData).hide();
         }
-    }
+    });
 
     function SubmitRequestDataForm(e) {
 
@@ -249,8 +239,6 @@
     }
 
     function ShowOrHideDivsByPensionTypeId() {
-
-        debugger;
 
         var ticketTypeId = GetTicketTypeId();
 
@@ -300,6 +288,20 @@
 
         ShowOrHideDivsByPensionTypeId();
     })
+
+    document.getElementById("DNTCaptchaInputText").addEventListener("input", function () {
+
+        if (this.value.length > 5) {
+            this.value = this.value.substring(0, 5); // Restrict input to 5 characters
+        }
+
+        var span = document.querySelector('span[data-valmsg-for="DNTCaptchaInputText"]');
+
+        if (span) {
+            span.style.display = this.value.trim() ? 'none' : 'inline'; // Hide if input has value, show if empty
+        }
+    });
+
 
 </script>
 

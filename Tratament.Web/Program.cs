@@ -6,6 +6,8 @@ using Tratament.Web.Recaptcha.RecaptchaHelpers;
 using MAIeDosar.API.Services.MConnect;
 using Tratament.Web.Services.MConectService;
 using Tratament.Web.LoggerSetup;
+using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Mvc;
 
 internal class Program
 {
@@ -21,15 +23,19 @@ internal class Program
 
         builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
         var configuration = builder.Configuration;
+    
 
         #region Session
 
         builder.Services.AddDistributedMemoryCache();
+        // Configure session
         builder.Services.AddSession(options =>
         {
-            options.IdleTimeout = TimeSpan.FromMinutes(20);
-            options.Cookie.HttpOnly = true;
-            options.Cookie.IsEssential = true;
+            options.Cookie.HttpOnly = true; // Prevent JavaScript access
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Required for SameSite=None
+
+            options.Cookie.SameSite = SameSiteMode.None; // Allow cross-site requests
+            options.IdleTimeout = TimeSpan.FromMinutes(20); // Session timeout
         });
 
         #endregion
@@ -44,7 +50,7 @@ internal class Program
         #region DNT Captcha
 
         builder.Services.AddDNTCaptcha(options =>
-               options.UseCookieStorageProvider(SameSiteMode.None).ShowThousandsSeparators(false)
+               options.UseSessionStorageProvider().ShowThousandsSeparators(false)
                  .WithEncryptionKey("12345"));
 
         #endregion

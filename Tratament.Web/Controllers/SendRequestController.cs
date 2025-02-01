@@ -1,8 +1,11 @@
-﻿using MAIeDosar.API.ApiViewModels.ExternalServices;
+﻿using DNTCaptcha.Core;
+using MAIeDosar.API.ApiViewModels.ExternalServices;
 using MAIeDosar.API.Services.MConnect;
 using MAIeDosar.API.ServicesModels.Civil;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.Options;
 using Tratament.Web.LoggerSetup;
 using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.ViewModels.SendRequest;
@@ -15,10 +18,16 @@ namespace Tratament.Web.Controllers
 
         private readonly IMConnectService _mConnectService;
 
-        public SendRequestController( IRecaptchaService recaptchaService, IMConnectService mConnectService)
+        private IDNTCaptchaValidatorService _validatorService; 
+        private DNTCaptchaOptions _captchoptions;
+
+        public SendRequestController(IRecaptchaService recaptchaService, IMConnectService mConnectService, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> captchaOptions)
         {    
             _recaptchaService = recaptchaService;
             _mConnectService = mConnectService;
+
+            _validatorService = validatorService;
+            _captchoptions = captchaOptions == null ? throw new ArgumentNullException(nameof(captchaOptions)) : captchaOptions.Value;
         }
 
         [HttpGet]
@@ -34,17 +43,31 @@ namespace Tratament.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Send(SendRequestViewModel requestViewModel)
+        public IActionResult Send(SendRequestViewModel requestViewModel)
         {
             ViewBag.TicketTypes = GetTicketTypes();
 
-            string captchaResponse = Request.Form["g-recaptcha-response"].ToString();
 
-            if (!await _recaptchaService.VerifyRecaptchaAsync(captchaResponse))
+            if(!_validatorService.HasRequestValidCaptchaEntry(Language.English, DisplayMode.ShowDigits))
             {
                 ViewBag.IsVerified = true;
+                ModelState.AddModelError(_captchoptions.CaptchaComponent.CaptchaInputName, "Introduce-ți codul de siguranță MTA"); 
+
                 return View("Send");
             }
+
+
+            //#region google reCaptha
+
+            //string captchaResponse = Request.Form["g-recaptcha-response"].ToString();
+
+            //if (!await _recaptchaService.VerifyRecaptchaAsync(captchaResponse))
+            //{
+            //    ViewBag.IsVerified = true;
+            //    return View("Send");
+            //}
+
+            //#endregion
 
             return RedirectToAction("Submited", "SendRequest");
         }

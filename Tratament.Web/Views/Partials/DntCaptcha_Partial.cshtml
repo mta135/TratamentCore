@@ -6,16 +6,16 @@
                  asp-captcha-generator-language="English"
                  asp-captcha-generator-display-mode="ShowDigits"
                  asp-use-relative-urls="true"
-                 asp-placeholder="Security code as a number"
-                 asp-validation-error-message="Please enter the security code as a number."
-                 asp-too-many-requests-error-message="Too many requests! Please wait a minute!"
+                 asp-placeholder="Numărul codului de siguranță"
+                
                  asp-font-name="Tahoma"
                  asp-font-size="40"
                  asp-fore-color="#333333"
                  asp-back-color="#FCF6F5FF"
                  asp-text-box-class="form-control"
                  asp-text-box-template="<div class='input-group'><span class='input-group-text'><span class='bi-lock'></span></span>{0}</div>"
+                 asp-validation-error-message="Numărul codului de siguranță este obligator"
+                 
                  asp-validation-message-class="text-danger"
                  asp-refresh-button-class="bi-arrow-counterclockwise btn-lg"
-                 asp-show-refresh-button="true"
-                 asp-dir="ltr" />
+                 asp-use-noise="false" />
