@@ -35,22 +35,38 @@ namespace Tratament.Web.Core
                         });
 
                         // Additional text below
-                        column.Item().Column(innerColumn =>
+                        column.Item().Table(table =>
                         {
-                            innerColumn.Spacing(10);
+                            table.ColumnsDefinition(columns =>
+                            {
+                                columns.RelativeColumn(); // Nume câmp
+                                columns.RelativeColumn(); // Valoare câmp
+                            });
 
-                            innerColumn.Item().Text("Cererea depusă de către: " + "9713657892145").FontSize(14);
-                            innerColumn.Item().Text("Tipul solicitării: " + "Bilete la cernobil").FontSize(14);
-                            innerColumn.Item().Text("Numărul cererii: " + "685").FontSize(14);
-                            innerColumn.Item().Text("Data depunerii: 2024/01/23").FontSize(14);
+                            string borderColor = "#dee2e6"; // Culoare hexazecimală
 
-                            innerColumn.Item().Text("Detalii: Cererea a fost acceptat cu succes").FontSize(14);
+                            void AddRow(string field, string value)
+                            {
+                                table.Cell().Border((float)0.3).BorderColor(borderColor).Padding(5).Text(field);
+                                table.Cell().Border((float)0.3).BorderColor(borderColor).Padding(5).Text(value);
+                            }
 
-                            innerColumn.Item().LineHorizontal(1);
 
-                            innerColumn.Item().Text("Nota: Statului cererii poate fi verificat pe perioada de 2 luni").FontSize(12).Italic();
+                            AddRow("Cererea depusă de către:", "9713657892145");
 
+                            AddRow("Tipul solicitării:", "Bilete la Cernobil");
+
+                            AddRow("Numărul cererii:", "685");
+
+                            AddRow("Data depunerii:", "2024/01/23");
+                            AddRow("Detalii:", "Cererea a fost acceptată cu succes.");
                         });
+
+                        column.Item().LineHorizontal((float)0.3).LineColor("#dee2e6");
+
+                        // Notă suplimentară
+                        column.Item().Text("Nota: Statutul cererii poate fi verificat pe o perioadă de 2 luni")
+                            .FontSize(12).Italic();
                     });
                 });
 
@@ -58,6 +74,9 @@ namespace Tratament.Web.Core
 
             return pdfDocument;
         }
+
+
+
 
     }
 }

@@ -79,6 +79,10 @@ namespace Tratament.Web.Controllers
 
             submitViewModel = HttpContext.Session.GetObject<SubmitViewModel>("SubmitData");
 
+            if (submitViewModel == null)
+                submitViewModel = new SubmitViewModel();
+
+
             return View(submitViewModel);
         }
 
@@ -137,14 +141,5 @@ namespace Tratament.Web.Controllers
             return submitViewModel;
         }
 
-
-        public string GetTicketType(string ticketTypeId)
-        {
-            {
-
-            }
-
-
-      
      }
 }
