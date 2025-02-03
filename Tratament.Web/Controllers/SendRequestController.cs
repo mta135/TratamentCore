@@ -106,19 +106,7 @@ namespace Tratament.Web.Controllers
 
             if(mconnectPerson != null)
             {
-                SubmitViewModel submitViewModel = new();
-
-                submitViewModel.Idnp = mconnectPerson.IDNP;
-
-                submitViewModel.Name = mconnectPerson.Name;
-                submitViewModel.Surname = mconnectPerson.Surname;
-                submitViewModel.Patronymic = mconnectPerson.Patronymic;
-
-                submitViewModel.TicketTypeId = "1";
-
-                submitViewModel.RequestNumber = "62";
-
-                submitViewModel.RequestSubmitDate = DateTime.Now;
+                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, "62", "1");
 
                 HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
@@ -128,6 +116,33 @@ namespace Tratament.Web.Controllers
             return View();
 
         }
+
+
+        public SubmitViewModel SetSubmitedData(PersonModel mconnectPerson, string requestNumber, string ticketTypeId)
+        {
+            SubmitViewModel submitViewModel = new SubmitViewModel();
+
+            submitViewModel.Idnp = mconnectPerson.IDNP;
+
+            submitViewModel.Name = mconnectPerson.Name;
+            submitViewModel.Surname = mconnectPerson.Surname;
+            submitViewModel.Patronymic = mconnectPerson.Patronymic;
+
+            submitViewModel.TicketTypeId = ticketTypeId;
+
+            submitViewModel.RequestNumber = requestNumber;
+
+            submitViewModel.RequestSubmitDate = DateTime.Now;
+
+            return submitViewModel;
+        }
+
+
+        public string GetTicketType(string ticketTypeId)
+        {
+            {
+
+            }
 
 
       
