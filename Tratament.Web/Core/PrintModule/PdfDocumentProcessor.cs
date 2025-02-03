@@ -1,6 +1,7 @@
 ﻿using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using Tratament.Web.ViewModels.SendRequest;
+using Tratament.Web.ViewModels.SendRequest.Helepr;
 
 namespace Tratament.Web.Core.PrintModule
 {

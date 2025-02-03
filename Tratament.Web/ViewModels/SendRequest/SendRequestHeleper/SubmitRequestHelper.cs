@@ -1,6 +1,6 @@
 ﻿using Tratament.Model.Models.Enums;
 
-namespace Tratament.Web.ViewModels.SendRequest
+namespace Tratament.Web.ViewModels.SendRequest.Helepr
 {
     public class SubmitRequestHelper
     {
@@ -8,7 +8,7 @@ namespace Tratament.Web.ViewModels.SendRequest
         {
             string compType = string.Empty;
 
-           if(ticketId == "1")
+            if (ticketId == "1")
                 compType = TicketCompensationTypeEnum.DesabilityTicket;
 
             if (ticketId == "2")
@@ -20,7 +20,7 @@ namespace Tratament.Web.ViewModels.SendRequest
             if (ticketId == "4")
                 compType = TicketCompensationTypeEnum.CompenstaionTicket;
 
-           return compType;
+            return compType;
         }
     }
 }
