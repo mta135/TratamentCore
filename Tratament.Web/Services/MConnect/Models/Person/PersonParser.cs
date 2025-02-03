@@ -17,9 +17,9 @@ namespace Tratament.Web.ServicesModels.PhisicalPerson
         /// <param name="document"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<PersonAPIModel> GetParsedPerson(XmlDocument document)
+        public async Task<PersonModel> GetParsedPerson(XmlDocument document)
         {
-            PersonAPIModel personAPI = new PersonAPIModel();
+            PersonModel personAPI = new PersonModel();
             try
             {
                 XmlNodeList faultStrings = document.GetElementsByTagName("faultstring");

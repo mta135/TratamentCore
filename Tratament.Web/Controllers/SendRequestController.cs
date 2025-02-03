@@ -97,7 +97,7 @@ namespace Tratament.Web.Controllers
             PersonFilter personFilter = new PersonFilter();
             personFilter.IDNP = "2010500696009";
 
-            PersonAPIModel personAPI = await _mConnectService.GetPerson(personFilter);
+            PersonModel personAPI = await _mConnectService.GetPerson(personFilter);
             var a = 0;
 
 

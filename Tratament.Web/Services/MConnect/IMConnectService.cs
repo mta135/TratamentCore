@@ -5,6 +5,6 @@ namespace Tratament.Web.Services.MConnect
 {
     public interface IMConnectService
     {
-        Task<PersonAPIModel> GetPerson(PersonFilter search);
+        Task<PersonModel> GetPerson(PersonFilter search);
     }
 }

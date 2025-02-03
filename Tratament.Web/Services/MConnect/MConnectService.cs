@@ -19,13 +19,13 @@ namespace Tratament.Web.Services.MConnect
 
         }
 
-        public async Task<PersonAPIModel> GetPerson(PersonFilter filter)
+        public async Task<PersonModel> GetPerson(PersonFilter filter)
         {
             PersonParser person = new PersonParser();
 
             (XmlDocument document, XmlNode node) = await GetResponse(filter.IDNP, MConnectActionType.Person);
 
-            PersonAPIModel personAPI = await person.GetParsedPerson(document);
+            PersonModel personAPI = await person.GetParsedPerson(document);
 
             return personAPI;
         }

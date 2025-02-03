@@ -1,8 +1,8 @@
 ﻿namespace Tratament.Model.Models.ExternalServices
 {
-    public class PersonAPIModel
+    public class PersonModel
     {
-        public PersonAPIModel()
+        public PersonModel()
         {
             PersoneAddress = new PersoneAddress();
         }
