@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using Tratament.Web.Core;
 using Tratament.Web.ViewModels.SendRequest;
 
@@ -14,7 +15,10 @@ namespace Tratament.Web.Controllers
 
             byte[] pdfDocument = printHelper.PrintPdf(submitViewModel);
 
-            return File(pdfDocument, "application/pdf", "Recipisa.pdf");
+            MemoryStream stream = new MemoryStream(pdfDocument);
+
+            return new FileStreamResult(stream, "application/pdf") { FileDownloadName = "Recipisa.pdf" };
+
         }
     }
 }
