@@ -51,7 +51,7 @@ namespace Tratament.Web.Controllers
             if(!_validatorService.HasRequestValidCaptchaEntry(Language.English, DisplayMode.ShowDigits))
             {
                 ViewBag.IsVerified = true;
-                ModelState.AddModelError(_captchoptions.CaptchaComponent.CaptchaInputName, "Introduce-ți codul de siguranță MTA"); 
+                ModelState.AddModelError(_captchoptions.CaptchaComponent.CaptchaInputName, "Codul de siguranta a fost introdus gresit"); 
 
                 return View("Send");
             }
