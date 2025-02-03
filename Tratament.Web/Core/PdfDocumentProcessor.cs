@@ -55,11 +55,11 @@ namespace Tratament.Web.Core
 
                             AddRow("Cererea depusă de către:", npp);
 
-                            AddRow("Tipul solicitării:", "Bilete la Cernobil");
+                            AddRow("Tipul solicitării:", SubmitRequestHelper.GetCompensationTypeTiket(submitViewModel.TicketTypeId));
 
-                            AddRow("Numărul cererii:", "685");
+                            AddRow("Numărul cererii:", submitViewModel.RequestNumber);
 
-                            AddRow("Data depunerii:", "2024/01/23");
+                            AddRow("Data depunerii:", Convert.ToString(submitViewModel.RequestSubmitDate));
 
                             AddRow("Detalii:", "Cererea a fost acceptată cu succes.");
                         });
