@@ -1,11 +1,7 @@
-﻿using MAIeDosar.API.Services.MConnect.MConnectCore;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
 using System.Xml.Linq;
 
-namespace MAIeDosar.API.Services.MConnect
+namespace Tratament.Web.Services.MConnect.MConnectCore
 {
     public sealed class MCClient : MCClientConfig
     {

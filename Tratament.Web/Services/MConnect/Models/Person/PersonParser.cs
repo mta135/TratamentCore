@@ -1,9 +1,9 @@
-﻿using MAIeDosar.API.ApiViewModels.ExternalServices;
+﻿using Tratament.Web.ApiViewModels.ExternalServices;
 using System;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace MAIeDosar.API.ServicesModels.PhisicalPerson
+namespace Tratament.Web.ServicesModels.PhisicalPerson
 {
     public class PersonParser
     {

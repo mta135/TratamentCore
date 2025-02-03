@@ -1,10 +1,10 @@
-﻿using MAIeDosar.API.ServicesModels.Org;
+﻿using Tratament.Web.ServicesModels.Org;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace MAIeDosar.API.Services.MConnect
+namespace Tratament.Web.Services.MConnect
 {
     public class OrganizationParser
     {

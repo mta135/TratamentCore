@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MAIeDosar.API.ServicesModels.Org
+namespace Tratament.Web.ServicesModels.Org
 {
     public class OrganizationServiceResult
     {

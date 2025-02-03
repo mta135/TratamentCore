@@ -1,11 +1,11 @@
-﻿using MAIeDosar.API.ServicesModels.Org;
+﻿using Tratament.Web.ServicesModels.Org;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MAIeDosar.API.ApiViewModels.ExternalServices
+namespace Tratament.Web.ApiViewModels.ExternalServices
 {
     /// <summary>
     /// OrgApiModel -> ApiViewModels / ExternalServices

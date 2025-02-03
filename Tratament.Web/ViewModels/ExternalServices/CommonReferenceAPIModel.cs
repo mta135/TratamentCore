@@ -1,4 +1,4 @@
-﻿namespace MAIeDosar.API.ApiViewModels.ExternalServices
+﻿namespace Tratament.Web.ApiViewModels.ExternalServices
 {
     public class CommonReferenceAPIModel
     {

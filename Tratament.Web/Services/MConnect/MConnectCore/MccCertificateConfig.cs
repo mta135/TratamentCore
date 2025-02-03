@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Security.Cryptography.X509Certificates;
 
-namespace MAIeDosar.API.Services.MConnect
+namespace Tratament.Web.Services.MConnect.MConnectCore
 {
     public class MccCertificateConfig
     {

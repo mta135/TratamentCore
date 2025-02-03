@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace MAIeDosar.API.Services.MConnect
+namespace Tratament.Web.Services.MConnect.MConnectCore
 {
     public class RequestSettings
     {

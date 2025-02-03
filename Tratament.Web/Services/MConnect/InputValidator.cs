@@ -1,12 +1,8 @@
-﻿using MAIeDosar.API.ServicesModels.Civil;
-using MAIeDosar.API.ServicesModels.Org;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+using Tratament.Web.Services.MConnect.Models.Person;
+using Tratament.Web.Services.MConnect.MConnectCore;
 
-namespace MAIeDosar.API.Services.MConnect
+namespace Tratament.Web.Services.MConnect
 {
     public class InputValidator
     {

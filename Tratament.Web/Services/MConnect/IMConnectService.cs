@@ -1,8 +1,9 @@
-﻿using MAIeDosar.API.ApiViewModels.ExternalServices;
-using MAIeDosar.API.ServicesModels.Civil;
-using MAIeDosar.API.ServicesModels.Org;
+﻿using Tratament.Web.ApiViewModels.ExternalServices;
+using Tratament.Web.Services.MConnect.MConnectCore;
+using Tratament.Web.Services.MConnect.Models.Person;
+using Tratament.Web.ServicesModels.Org;
 
-namespace MAIeDosar.API.Services.MConnect
+namespace Tratament.Web.Services.MConnect
 {
     public interface IMConnectService
     {

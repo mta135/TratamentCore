@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MAIeDosar.API.ServicesModels.Civil
+namespace Tratament.Web.Services.MConnect.Models.Person
 {
     public class PersonFilter
     {

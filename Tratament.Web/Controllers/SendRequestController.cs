@@ -1,14 +1,13 @@
 ﻿using DNTCaptcha.Core;
-using MAIeDosar.API.ApiViewModels.ExternalServices;
-using MAIeDosar.API.Services.MConnect;
-using MAIeDosar.API.ServicesModels.Civil;
+using Tratament.Web.ApiViewModels.ExternalServices;
+using Tratament.Web.Services.MConnect;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Options;
 using Tratament.Web.LoggerSetup;
 using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.ViewModels.SendRequest;
+using Tratament.Web.Services.MConnect.Models.Person;
 
 namespace Tratament.Web.Controllers
 {
@@ -96,7 +95,7 @@ namespace Tratament.Web.Controllers
         public async Task<IActionResult> TestMconnect()
         {
             PersonFilter personFilter = new PersonFilter();
-            personFilter.IDNP = "2004023011612";
+            personFilter.IDNP = "2002089016965";
 
             PersonAPIModel personAPI = await _mConnectService.GetPerson(personFilter);
             var a = 0;

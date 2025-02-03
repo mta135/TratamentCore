@@ -1,4 +1,4 @@
-﻿namespace MAIeDosar.API.Services.MConnect.MConnectCore
+﻿namespace Tratament.Web.Services.MConnect.MConnectCore
 {
     public enum MConnectActionType
     {

@@ -3,11 +3,9 @@ using QuestPDF.Infrastructure;
 using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.Recaptcha;
 using Tratament.Web.Recaptcha.RecaptchaHelpers;
-using MAIeDosar.API.Services.MConnect;
-using Tratament.Web.Services.MConectService;
+using Tratament.Web.Services.MConnect;
 using Tratament.Web.LoggerSetup;
-using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Mvc;
+using Tratament.Web.Services.MConnect.MConnectCore;
 
 internal class Program
 {
@@ -64,8 +62,6 @@ internal class Program
         #region InitializeSettings
 
         MccCertificateConfig.InitializeSettings(configuration);
-        MConnectHelper.InitializeSettings(configuration);
-
         WriteLog.InitLoggers();
 
         #endregion

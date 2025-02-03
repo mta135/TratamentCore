@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace MAIeDosar.API.ApiViewModels.ExternalServices
+namespace Tratament.Web.ApiViewModels.ExternalServices
 {
     public class PersonAPIModel
     {
