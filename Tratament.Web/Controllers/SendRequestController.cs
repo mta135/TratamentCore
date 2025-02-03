@@ -8,6 +8,7 @@ using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.ViewModels.SendRequest;
 using Tratament.Web.Services.MConnect.Models.Person;
 using Tratament.Model.Models.ExternalServices;
+using Tratament.Web.Core;
 
 namespace Tratament.Web.Controllers
 {
@@ -76,6 +77,8 @@ namespace Tratament.Web.Controllers
         {
             SubmitViewModel submitViewModel = new SubmitViewModel();
 
+            submitViewModel = HttpContext.Session.GetObject<SubmitViewModel>("SubmitData");
+
             return View(submitViewModel);
         }
 
@@ -97,11 +100,35 @@ namespace Tratament.Web.Controllers
             PersonFilter personFilter = new PersonFilter();
             personFilter.IDNP = "2010500696009";
 
-            PersonModel personAPI = await _mConnectService.GetPerson(personFilter);
-            var a = 0;
+            PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
+
+            if(mconnectPerson != null)
+            {
+                SubmitViewModel submitViewModel = new();
+
+                submitViewModel.Idnp = mconnectPerson.IDNP;
+
+                submitViewModel.Name = mconnectPerson.Name;
+                submitViewModel.Surname = mconnectPerson.Surname;
+                submitViewModel.Patronymic = mconnectPerson.Patronymic;
+
+                submitViewModel.TicketType = "Compensaţia bănească în schimbul biletului pentru Cernobîl";
+
+                submitViewModel.RequestNumber = "62";
+
+                submitViewModel.RequestSubmitDate = DateTime.Now;
+
+                HttpContext.Session.SetObject("SubmitData", submitViewModel);
+
+                return RedirectToAction("Submited", "SendRequest");
+            }
 
 
             return View();
+
         }
-    }
+
+
+      
+     }
 }
