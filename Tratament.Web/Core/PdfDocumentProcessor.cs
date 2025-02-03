@@ -51,22 +51,23 @@ namespace Tratament.Web.Core
                                 table.Cell().Border((float)0.3).BorderColor(borderColor).Padding(5).Text(value);
                             }
 
+                            string npp = $"{submitViewModel.Name}/{submitViewModel.Surname}/{submitViewModel.Patronymic}/({submitViewModel.Idnp})";
 
-                            AddRow("Cererea depusă de către:", "9713657892145");
+                            AddRow("Cererea depusă de către:", npp);
 
                             AddRow("Tipul solicitării:", "Bilete la Cernobil");
 
                             AddRow("Numărul cererii:", "685");
 
                             AddRow("Data depunerii:", "2024/01/23");
+
                             AddRow("Detalii:", "Cererea a fost acceptată cu succes.");
                         });
 
                         column.Item().LineHorizontal((float)0.3).LineColor("#dee2e6");
 
-                        // Notă suplimentară
-                        column.Item().Text("Nota: Statutul cererii poate fi verificat pe o perioadă de 2 luni")
-                            .FontSize(12).Italic();
+                        column.Item().Text("Nota: Statutul cererii poate fi verificat pe o perioadă de 2 luni").FontSize(12).Italic();
+
                     });
                 });
 
