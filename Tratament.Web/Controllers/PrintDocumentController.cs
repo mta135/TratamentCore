@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.IO;
-using Tratament.Web.Core;
+using Tratament.Web.Core.PrintModule;
 using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Controllers

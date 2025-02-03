@@ -1,6 +1,6 @@
 ﻿using Tratament.Web.ViewModels.SendRequest;
 
-namespace Tratament.Web.Core
+namespace Tratament.Web.Core.PrintModule
 {
     public class PrintHelper
     {
