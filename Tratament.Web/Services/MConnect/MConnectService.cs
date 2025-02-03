@@ -1,9 +1,8 @@
-﻿using Tratament.Web.ApiViewModels.ExternalServices;
-using Tratament.Web.Services.MConnect.MConnectCore;
-using Tratament.Web.ServicesModels.Org;
+﻿using Tratament.Web.Services.MConnect.MConnectCore;
 using Tratament.Web.ServicesModels.PhisicalPerson;
 using System.Xml;
 using Tratament.Web.Services.MConnect.Models.Person;
+using Tratament.Model.Models.ExternalServices;
 
 namespace Tratament.Web.Services.MConnect
 {
@@ -31,15 +30,7 @@ namespace Tratament.Web.Services.MConnect
             return personAPI;
         }
 
-        public async Task<OrganizationServiceResult> GetOrganization(OrganizationFilter filter)
-        {
-            OrganizationParser orgParser = new OrganizationParser();
-            (XmlDocument document, XmlNode node) = await GetResponse(filter.IDNO, MConnectActionType.Organization);
 
-            OrganizationServiceResult organization = await orgParser.GetParsedOrganization(document);
-
-            return organization;
-        }
 
         /// <summary>
         /// Solid - S - Ответственность метода - построить XML по параметрам и получить XML

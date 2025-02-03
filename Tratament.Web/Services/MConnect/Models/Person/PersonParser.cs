@@ -1,7 +1,5 @@
-﻿using Tratament.Web.ApiViewModels.ExternalServices;
-using System;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.Xml;
+using Tratament.Model.Models.ExternalServices;
 
 namespace Tratament.Web.ServicesModels.PhisicalPerson
 {

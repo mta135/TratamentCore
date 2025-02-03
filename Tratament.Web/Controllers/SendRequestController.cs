@@ -1,5 +1,4 @@
 ﻿using DNTCaptcha.Core;
-using Tratament.Web.ApiViewModels.ExternalServices;
 using Tratament.Web.Services.MConnect;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +7,7 @@ using Tratament.Web.LoggerSetup;
 using Tratament.Web.Recaptcha.Interface;
 using Tratament.Web.ViewModels.SendRequest;
 using Tratament.Web.Services.MConnect.Models.Person;
+using Tratament.Model.Models.ExternalServices;
 
 namespace Tratament.Web.Controllers
 {
@@ -95,7 +95,7 @@ namespace Tratament.Web.Controllers
         public async Task<IActionResult> TestMconnect()
         {
             PersonFilter personFilter = new PersonFilter();
-            personFilter.IDNP = "2002089016965";
+            personFilter.IDNP = "2010500696009";
 
             PersonAPIModel personAPI = await _mConnectService.GetPerson(personFilter);
             var a = 0;

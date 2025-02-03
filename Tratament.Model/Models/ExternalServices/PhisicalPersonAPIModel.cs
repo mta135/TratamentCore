@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Tratament.Web.ApiViewModels.ExternalServices
+﻿namespace Tratament.Model.Models.ExternalServices
 {
     public class PersonAPIModel
     {
