@@ -100,6 +100,8 @@ namespace Tratament.Web.Controllers
             PersonFilter personFilter = new PersonFilter();
             personFilter.IDNP = "2010500696009";
 
+
+
             PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
 
             if(mconnectPerson != null)
@@ -112,7 +114,7 @@ namespace Tratament.Web.Controllers
                 submitViewModel.Surname = mconnectPerson.Surname;
                 submitViewModel.Patronymic = mconnectPerson.Patronymic;
 
-                submitViewModel.TicketType = "Compensaţia bănească în schimbul biletului pentru Cernobîl";
+                submitViewModel.TicketTypeId = "1";
 
                 submitViewModel.RequestNumber = "62";
 
@@ -122,7 +124,6 @@ namespace Tratament.Web.Controllers
 
                 return RedirectToAction("Submited", "SendRequest");
             }
-
 
             return View();
 
