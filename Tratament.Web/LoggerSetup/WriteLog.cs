@@ -7,10 +7,10 @@ namespace Tratament.Web.LoggerSetup
     public class WriteLog
     {
         public static ILog Common { get; private set; }
-        public static ILog Web { get; private set; }
-        public static ILog DB { get; set; }
-        public static ILog Schedulers { get; private set; }
-        public static ILog MSign { get; private set; }
+        //public static ILog Web { get; private set; }
+        //public static ILog DB { get; set; }
+        //public static ILog Schedulers { get; private set; }
+        //public static ILog MSign { get; private set; }
 
 
         public static void InitLoggers()
@@ -24,10 +24,12 @@ namespace Tratament.Web.LoggerSetup
             #endregion 
 
             Common = LogManager.GetLogger("CommonAppender");
-            Web = LogManager.GetLogger("WebAppender");
-            DB = LogManager.GetLogger("DatabaseAppender");
-            Schedulers = LogManager.GetLogger("SchedulersAppender");
-            MSign = LogManager.GetLogger("MSignAppender");
+
+
+            //Web = LogManager.GetLogger("WebAppender");
+            //DB = LogManager.GetLogger("DatabaseAppender");
+            //Schedulers = LogManager.GetLogger("SchedulersAppender");
+            //MSign = LogManager.GetLogger("MSignAppender");
 
         }
     }
