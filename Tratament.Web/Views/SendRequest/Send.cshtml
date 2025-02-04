@@ -284,8 +284,8 @@
 
     document.getElementById("DNTCaptchaInputText").addEventListener("input", function () {
 
-        if (this.value.length > 5) {
-            this.value = this.value.substring(0, 5); // Restrict input to 5 characters
+        if (this.value.length > 6) {
+            this.value = this.value.substring(0, 6); // Restrict input to 6 characters
         }
 
         var span = document.querySelector('span[data-valmsg-for="DNTCaptchaInputText"]');
