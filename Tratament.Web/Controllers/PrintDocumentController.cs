@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.IO;
+using Tratament.Web.Core;
 using Tratament.Web.Core.PrintModule;
 using Tratament.Web.ViewModels.SendRequest;
 
@@ -9,8 +9,8 @@ namespace Tratament.Web.Controllers
     {
         public ActionResult PrintPdfDocument()
         {
-            SubmitViewModel submitViewModel = new SubmitViewModel();
-                        
+            SubmitViewModel submitViewModel = HttpContext.Session.GetObject<SubmitViewModel>("SubmitData");
+
             PrintHelper printHelper = new PrintHelper();
 
             byte[] pdfDocument = printHelper.PrintPdf(submitViewModel);
