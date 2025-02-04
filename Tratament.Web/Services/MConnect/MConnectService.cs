@@ -3,6 +3,7 @@ using Tratament.Web.ServicesModels.PhisicalPerson;
 using System.Xml;
 using Tratament.Web.Services.MConnect.Models.Person;
 using Tratament.Model.Models.ExternalServices;
+using Tratament.Web.LoggerSetup;
 
 namespace Tratament.Web.Services.MConnect
 {
@@ -63,8 +64,8 @@ namespace Tratament.Web.Services.MConnect
             });
 
             string _sendedRequest = await request.Content.ReadAsStringAsync();
-          //  MainLogger.Web.Info($"MConnect {type} Request: \n {_sendedRequest}");
-
+            WriteLog.Common.Info($"MConnect {type} Request: \n {_sendedRequest}");
+  
             var httpResponse = await mCClient.SendRequest(request, 45000);
             string Response = await httpResponse.Content.ReadAsStringAsync();
 
@@ -76,9 +77,8 @@ namespace Tratament.Web.Services.MConnect
 
             (XmlDocument document, XmlNode node) = mCClient.GetResponseBody(responseSettings, Response);
 
-           // MainLogger.Web.Info($"MConnect {type} Response: \n {Response}");
+            WriteLog.Common.Info($"MConnect {type} Response: \n {Response}");
             return new Tuple<XmlDocument, XmlNode>(document, node);
-
 
         }
     }
