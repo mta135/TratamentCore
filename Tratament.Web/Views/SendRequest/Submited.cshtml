@@ -1,43 +1,47 @@
 ﻿@model Tratament.Web.ViewModels.SendRequest.SubmitViewModel
+@using Tratament.Model.Models.Enums;
 
-<div class="container">
+    @{ 
+       RequestTypeEnum? requestType =  ViewBag.RequestType;
+    }
 
+    <div class="container">
 
-    <div class="row mt-4">
-        <div class="col-sm-12">
-            <h6>Datale au fost transmise la CNAS</h6>
-        </div>
-    </div>
-
-
-    <table class="table table-bordered mt-1">
-        <tbody>
-            <tr>
-                <td class="w-50">Cerere depusă de către</td>
-                <td class="w-50">@(Model.Idnp)</td>
-            </tr>
-            <tr>
-                <td class="w-50">Tipul tichetului</td>
-                <td class="w-50">@(Model.TicketType)</td>
-            </tr>
-            <tr>
-                <td class="w-50">Numărul cererii</td>
-                <td class="w-50">@(Model.RequestNumber)</td>
-            </tr>
-            <tr>
-                <td class="w-50">Data depunerii cererii</td>
-                <td class="w-50">@(Model.RequestSubmitDate?.ToShortDateString())</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <hr />
-
-    <div class="row">
-        <div class="col-sm-12">
-            <a asp-action="PrintPdfDocument" asp-controller="PrintDocument" class="btn btn-primary">Genereaza recipisa</a>
+        <div class="row mt-4">
+            <div class="col-sm-12">
+                <h6>Datale au fost transmise la CNAS</h6>
+            </div>
         </div>
 
-    </div>
 
-</div>
+        <table class="table table-bordered mt-1">
+            <tbody>
+                <tr>
+                    <td class="w-50">Cerere depusă de către</td>
+                    <td class="w-50">@(Model.Idnp)</td>
+                </tr>
+                <tr>
+                    <td class="w-50">Tipul tichetului</td>
+                    <td class="w-50">@(Model.TicketType)</td>
+                </tr>
+                <tr>
+                    <td class="w-50">Numărul cererii</td>
+                    <td class="w-50">@(Model.RequestNumber)</td>
+                </tr>
+                <tr>
+                    <td class="w-50">Data depunerii cererii</td>
+                    <td class="w-50">@(Model.RequestSubmitDate?.ToShortDateString())</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-sm-12">
+                <a asp-action="PrintPdfDocument" asp-controller="PrintDocument" class="btn btn-primary">Genereaza recipisa</a>
+            </div>
+
+        </div>
+
+    </div>

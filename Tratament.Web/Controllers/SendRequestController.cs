@@ -9,6 +9,7 @@ using Tratament.Web.ViewModels.SendRequest;
 using Tratament.Web.Services.MConnect.Models.Person;
 using Tratament.Model.Models.ExternalServices;
 using Tratament.Web.Core;
+using Tratament.Model.Models.Enums;
 
 namespace Tratament.Web.Controllers
 {
@@ -56,6 +57,8 @@ namespace Tratament.Web.Controllers
                 return View("Send");
             }
 
+
+            ViewBag.RequestType = RequestTypeEnum.NewRequest;
 
             //#region google reCaptha
 
