@@ -1,6 +1,6 @@
 ﻿using Tratament.Model.Models.Enums;
 
-namespace Tratament.Web.ViewModels.SendRequest.Helepr
+namespace Tratament.Web.ViewModels.SendRequest.Heleper
 {
     public class SubmitRequestHelper
     {

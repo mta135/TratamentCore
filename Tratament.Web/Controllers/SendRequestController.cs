@@ -44,7 +44,7 @@ namespace Tratament.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Send(SendRequestViewModel requestViewModel)
+        public async Task<IActionResult> Send(SendRequestViewModel requestViewModel)
         {
             ViewBag.TicketTypes = GetTicketTypes();
 
@@ -57,22 +57,22 @@ namespace Tratament.Web.Controllers
                 return View("Send");
             }
 
+            PersonFilter personFilter = new();
 
-            ViewBag.RequestType = RequestTypeEnum.NewRequest;
+            personFilter.IDNP = requestViewModel.Idnp;
 
-            //#region google reCaptha
+            PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
 
-            //string captchaResponse = Request.Form["g-recaptcha-response"].ToString();
+            if (mconnectPerson != null)
+            {
+                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, "62", requestViewModel.TicketTypeId);
+                HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
-            //if (!await _recaptchaService.VerifyRecaptchaAsync(captchaResponse))
-            //{
-            //    ViewBag.IsVerified = true;
-            //    return View("Send");
-            //}
+                return RedirectToAction("Submited", "SendRequest");
 
-            //#endregion
-
-            return RedirectToAction("Submited", "SendRequest");
+            }
+            
+            return null;
         }
 
         [HttpGet]
