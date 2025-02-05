@@ -152,56 +152,144 @@
 
 <script type="text/javascript">
 
-    const sections = {
-        "1": ["DisabilitiesTreatmentTickets", "DisabilitiesTicketsConfirm"],
-        "2": ["VeteransTreatmentTickets", "DisabilitiesTicketsConfirm"],
-        "3": ["TicketsForCernobil", "CernobilTicketsConfirm"],
-        "4": ["PaymentCompensation", "PaymentCompensationConfirm"]
-    };
+    var utilDivIds = ["DisabilitiesTreatmentTickets", "VeteransTreatmentTickets", "TicketsForCernobil", "PaymentCompensation"];
 
-    const errorCorrectData = document.getElementById("error-corect-data");
-    const correctDataCheckbox = document.getElementById("CorrectData");
+    var confirmDivsId = ["ConfirmCorectData", "DisabilitiesTicketsConfirm", "VeteransTicketsConfirm", "CernobilTicketsConfirm", "PaymentCompensationConfirm"];
 
-    const sendRequestForm = document.getElementById("sendRequestForm");
+    var errorCorrectData = document.getElementById('error-corect-data');
+
+    var correctDataCheckbox = document.querySelector('#CorrectData');
+
+    var sendRequestForm = document.getElementById('sendRequestForm');
+    sendRequestForm.addEventListener('submit', SubmitRequestDataForm)
+
     const ticketTypeDropdown = document.getElementById("tiketType");
 
-    function toggleVisibility(ids, show) {
-        ids.forEach(id => {
+    function PensionTypeSelectItem() {
 
-            const element = document.getElementById(id);
-            if (element) element.style.display = show ? "block" : "none";
+        ShowOrHideDivsByPensionTypeId();
+    }
+
+    function HideUtilDivs(divElement) {
+
+        if (IsVisible(divElement)) {
+            divElement.style.display = 'none';
+        }
+    }
+
+    function ShowUtilDivs(divId) {
+        divId.style.display = 'block';
+    }
+
+    function HideMultipleDivs(divIds) {
+
+        divIds.forEach(function (divId) {
+            var divElement = document.getElementById(divId);
+            if (divElement) {
+                HideUtilDivs(divElement);
+            }
         });
     }
 
-    function updateDivVisibility() {
-
-        toggleVisibility(Object.values(sections).flat(), false);
-
-        const selectedIds = sections[ticketTypeDropdown.value] || [];
-        toggleVisibility([...selectedIds, "ConfirmCorectData"], true);
-    }
-
-    function validateCorrectData(event) {
+    function ValidateCorrectData(event) {
 
         if (!correctDataCheckbox.checked) {
 
             event.preventDefault();
-            errorCorrectData.style.display = "block";
+            errorCorrectData.style.display = 'block';
 
         } else {
-            errorCorrectData.style.display = "none";
+            errorCorrectData.style.display = 'none';
         }
     }
 
-    sendRequestForm.addEventListener("submit", validateCorrectData);
+    function IsVisible(divElement) {
 
-    correctDataCheckbox.addEventListener("change", () => errorCorrectData.style.display = "none");
-    ticketTypeDropdown.addEventListener("change", updateDivVisibility);
+        if ($(divElement).is(':visible')) {
+            return true;
+        }
+        return false;
+    }
+
+    correctDataCheckbox.addEventListener('change', function () {
+
+        if (this.checked && IsVisible(this)) {
+            $(errorCorrectData).hide();
+        }
+    });
+
+    function SubmitRequestDataForm(e) {
+
+        if (IsVisible(correctDataCheckbox)) {
+            ValidateCorrectData(event);
+        }
+    }
+
+    function GetTicketTypeId() {
+
+        var value = document.getElementById("tiketType");
+        var getvalue = value.options[value.selectedIndex].value;
+
+        return getvalue;
+    }
+
+    ticketTypeDropdown.addEventListener("change", ShowOrHideDivsByPensionTypeId);
+
+    function ShowOrHideDivsByPensionTypeId() {
+
+        var ticketTypeId = GetTicketTypeId();
+
+        HideMultipleDivs(utilDivIds);
+
+        HideMultipleDivs(confirmDivsId);
+
+        switch (ticketTypeId) {
+            case "1":
+                ShowUtilDivs(document.getElementById("DisabilitiesTreatmentTickets"));
+
+                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+                break;
+
+            case "2":
+                ShowUtilDivs(document.getElementById("VeteransTreatmentTickets"));
+
+                ShowUtilDivs(document.getElementById("DisabilitiesTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+                break;
+
+            case "3":
+                ShowUtilDivs(document.getElementById("TicketsForCernobil"));
+
+                ShowUtilDivs(document.getElementById("CernobilTicketsConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+
+                break;
+
+            case "4":
+                ShowUtilDivs(document.getElementById("PaymentCompensation"));
+
+                ShowUtilDivs(document.getElementById("PaymentCompensationConfirm"));
+                ShowUtilDivs(document.getElementById("ConfirmCorectData"));
+
+                break;
+
+            default:
+                // If no valid selection, keep all divs hidden
+                break;
+        }
+    }
+
+    window.addEventListener('load', function () {
+        console.log("Window load event; Seleted Item Id: " + GetTicketTypeId());
+
+        ShowOrHideDivsByPensionTypeId();
+    })
 
     document.getElementById("DNTCaptchaInputText").addEventListener("input", function () {
 
         if (this.value.length > 6) {
-            this.value = this.value.substring(0, 6); 
+            this.value = this.value.substring(0, 6); // Restrict input to 6 characters
         }
 
         var span = document.querySelector('span[data-valmsg-for="DNTCaptchaInputText"]');
@@ -209,13 +297,8 @@
         if (span) {
             span.style.display = this.value.trim() ? 'none' : 'inline'; // Hide if input has value, show if empty
         }
-
     });
 
-    window.addEventListener("load", function () {
-        console.log("Window load event; Selected Item Id: " + ticketTypeDropdown.value);
-        updateDivVisibility();
-    });
 
 
 
