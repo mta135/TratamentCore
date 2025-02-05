@@ -23,13 +23,13 @@ namespace Tratament.Web.Core.PrintModule
                     {
                         column.Spacing(20);
 
-                        column.Item().AlignCenter().Text("Recipisa").FontSize(20).Bold();
+                        column.Item().AlignCenter().Text("Recipisă").FontSize(20).Bold();
 
                         column.Item().AlignRight().Column(rightColumn =>
                         {
                             rightColumn.Spacing(10); // Adds space between items
 
-                            rightColumn.Item().Text("Casa Nationala de Asigurari Sociale").FontSize(14).Bold().AlignRight();
+                            rightColumn.Item().Text("Casa Naționala de Asigurări Sociale").FontSize(14).Bold().AlignRight();
 
                             rightColumn.Item().Text("Data recipisei: 2024/01/23").FontSize(14).AlignCenter();
 
@@ -44,7 +44,7 @@ namespace Tratament.Web.Core.PrintModule
                                 columns.RelativeColumn(); // Valoare câmp
                             });
 
-                            string borderColor = "#dee2e6"; // Culoare hexazecimală
+                            string borderColor = "#dee2e6"; 
 
                             void AddRow(string field, string value)
                             {
