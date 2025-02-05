@@ -52,9 +52,7 @@ namespace Tratament.Web.Core.PrintModule
                                 table.Cell().Border((float)0.3).BorderColor(borderColor).Padding(5).Text(value);
                             }
 
-                            string npp = $"{submitViewModel.Name}/{submitViewModel.Surname}/{submitViewModel.Patronymic}/({submitViewModel.Idnp})";
-
-                            AddRow("Cererea depusă de către:", npp);
+                            AddRow("Cererea depusă de către:", submitViewModel.Idnp);
 
                             AddRow("Tipul solicitării:", SubmitRequestHelper.GetCompensationTypeTiket(submitViewModel.TicketTypeId));
 
