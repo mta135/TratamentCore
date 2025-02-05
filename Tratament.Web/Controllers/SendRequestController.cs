@@ -107,20 +107,18 @@ namespace Tratament.Web.Controllers
             PersonFilter personFilter = new PersonFilter();
             personFilter.IDNP = "2010500696009";
 
-
-
             PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
 
-            if(mconnectPerson != null)
-            {
-                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, "62", "1");
+            //if(mconnectPerson != null)
+            //{
+            //    SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, "62", "1");
 
-                HttpContext.Session.SetObject("SubmitData", submitViewModel);
+            //    HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
-                return RedirectToAction("Submited", "SendRequest");
-            }
+            //    return RedirectToAction("Submited", "SendRequest");
+            //}
 
-            return View();
+            return Content("Mconnect IDNP: " + mconnectPerson.IDNP);
 
         }
 
