@@ -31,7 +31,7 @@ namespace Tratament.Web.Core.PrintModule
 
                             rightColumn.Item().Text("Casa Naționala de Asigurări Sociale").FontSize(14).Bold().AlignRight();
 
-                            rightColumn.Item().Text("Data recipisei: 2024/01/23").FontSize(14).AlignCenter();
+                            rightColumn.Item().Text("Data recipisei: " + Convert.ToString(submitViewModel.RequestSubmitDate)).FontSize(14).AlignCenter();
 
                         });
 

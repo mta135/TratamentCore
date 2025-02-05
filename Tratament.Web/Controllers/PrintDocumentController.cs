@@ -15,9 +15,7 @@ namespace Tratament.Web.Controllers
 
             byte[] pdfDocument = printHelper.PrintPdf(submitViewModel);
 
-            MemoryStream stream = new MemoryStream(pdfDocument);
-
-            return new FileStreamResult(stream, "application/pdf") { FileDownloadName = "Recipisa.pdf" };
+            return File(pdfDocument, "application/pdf", "Recipisa.pdf");
 
         }
     }
