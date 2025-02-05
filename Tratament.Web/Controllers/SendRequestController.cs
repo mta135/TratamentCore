@@ -52,7 +52,7 @@ namespace Tratament.Web.Controllers
             if(!_validatorService.HasRequestValidCaptchaEntry(Language.English, DisplayMode.ShowDigits))
             {
                 ViewBag.IsVerified = true;
-                ModelState.AddModelError(_captchoptions.CaptchaComponent.CaptchaInputName, "Codul de siguranta a fost introdus gresit"); 
+                ModelState.AddModelError(_captchoptions.CaptchaComponent.CaptchaInputName, "Codul de siguranță a fost introdus greșit"); 
 
                 return View("Send");
             }
