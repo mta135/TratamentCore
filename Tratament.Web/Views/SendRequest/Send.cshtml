@@ -59,18 +59,18 @@
 
                     <hr />
 
-                    <div class="row" id="chech-confirm-div">
+                    <div class="row" id="chech-confirm-data-error" style="display:none">
                         <div class="col-sm-10">
-                            <span id="chech-confirm-data-error" style="color: red;">Acest cimp este obligatorttMTA</span>
+                            <span id="chech-confirm-data-error" style="color: red;">Acest cimp este obligator</span>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-1" id="checkConfirmationData">
+                        <div class="col-sm-1" id="checkConfirmationData" style="display:none">
                             <input id="checkConfirmation" type="checkbox" name="CheckConfirmation" data-val="true">
                         </div>
 
-                        <div class="col-sm-11">
+                        <div class="col-sm-11" id="dataVerification">
                             <p style="text-align:justify">
                                 Am verificat datele introduse și confirm corectitudinea lor, pe proprie răspundere.
                             </p>
@@ -176,10 +176,17 @@
 
     const ticketTypeDropdown = document.getElementById("tiketType");
     const correctDataCheckbox = document.getElementById("CorrectData");
+
     const errorCorrectData = document.getElementById("error-corect-data");
     const sendRequestForm = document.getElementById("sendRequestForm");
-    const confirmCorectData = document.getElementById("ConfirmCorectData");
 
+    const confirmCorectData = document.getElementById("ConfirmCorectData");
+    const chechConfirmDiv = document.getElementById("chech-confirm-div");
+
+    const checkBoxCheckConfirmation = document.getElementById("checkConfirmation");
+    const divConfirmDataError = document.getElementById("chech-confirm-data-error");
+
+   
     ticketTypeDropdown.addEventListener("change", updateDivVisibility);
 
     function updateDivVisibility() {
@@ -198,20 +205,34 @@
 
     function validateCorrectData(event) {
 
-        if (IsVisible(correctDataCheckbox)) {
+        if (IsVisible(correctDataCheckbox) && IsVisible(checkBoxCheckConfirmation)) {
 
             if (!correctDataCheckbox.checked) {
 
                 event.preventDefault();
                 errorCorrectData.style.display = 'block';
-
-            } else {
+            }
+            else {
                 errorCorrectData.style.display = 'none';
+            }
+
+            if (!checkBoxCheckConfirmation.checked) {
+
+                event.preventDefault();
+                divConfirmDataError.style.display = 'block';
+            }
+            else {
+                divConfirmDataError.style.display = 'none';
             }
         }
     }
 
+
     correctDataCheckbox.addEventListener("change", () => errorCorrectData.style.display = "none");
+
+
+    checkBoxCheckConfirmation.addEventListener("change", () => divConfirmDataError.style.display = "none");
+
 
     function hideUtilDivs() {
 
@@ -224,6 +245,7 @@
         });
     }
 
+
     function showUtilDivs(divIds) {
 
         divIds.forEach(divId => {
@@ -234,22 +256,37 @@
         });
     }
 
+
     function getSectionsById(ticketTypeId) {
         return sections[ticketTypeId] || [];
     }
 
+
     function toggleDivCorrectConfirm(shouldHide, selectedIndex, sections) {
+
         const divCorrectData = document.getElementById("ConfirmCorectData");
+        const divCheckConfirmData = document.getElementById("checkConfirmationData");
 
-        if (!divCorrectData) return;
+        const divDataVerification = document.getElementById("dataVerification");
 
+        if (!divCorrectData)
+            return;
 
         if (shouldHide && Object.keys(sections).includes(selectedIndex)) {
+
             divCorrectData.style.display = "block";
-        } else {
+            divCheckConfirmData.style.display = "block";
+            divDataVerification.style.display = "block";
+        }
+
+        else {
             divCorrectData.style.display = "none";
+            divCheckConfirmData.style.display = "none";
+            divDataVerification.style.display = "none";
+
         }
     }
+
 
     function GetTicketTypeId(ticketTypeDropdown) {
 
@@ -257,6 +294,7 @@
 
         return getvalue;
     }
+
 
     document.getElementById("DNTCaptchaInputText").addEventListener("input", function () {
 
@@ -272,6 +310,7 @@
 
     });
 
+
     function IsVisible(divElement) {
 
         if ($(divElement).is(':visible')) {
@@ -279,6 +318,7 @@
         }
         return false;
     }
+
 
     window.addEventListener("load", function () {
 
