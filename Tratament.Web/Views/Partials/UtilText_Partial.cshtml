@@ -1,0 +1,185 @@
+﻿@model Tratament.Model.Models.Enums.ServiceTypeEnum
+
+<div class="card mt-2">
+    <div class="card-body">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <p class="text-center"><strong>Util</strong></p>
+
+                    @if (Model == Tratament.Model.Models.Enums.ServiceTypeEnum.Disabilities)
+                    {
+                        <p>
+                            Dreptul la asigurarea cu bilete de tratament sanatorial conform Legii nr.317 din 26.21.2024 cu privire la veteranii de război,
+                            îl au cetățenii Republicii Moldova, cu domiciliul permanent în Republica Moldova
+                        </p>
+
+                        <p style="text-align:justify">
+                            Dreptul la asigurarea cu bilete de tratament sanatorial gratuit în centrele de reabilitare ale
+                            Ministerului Muncii și Protecției Sociale și în alte instituții de acest tip, conform indicațiilor
+                            medicale și în limitele mijloacelor financiare destinate pentru tratamentul sanatorial veteranilor,
+                            incluse în transferurile bugetului de stat la bugetul asigurărilor sociale de stat,
+                            îl au persoanele cu dizabilităţi de pe urma războiului
+                        </p>
+
+                        <p class="text-center">***</p>
+
+                        <p style="text-align:justify">Prsoanele cu dizabilități de pe urma războiului, conform art.15 alin (3) lit. b) din Legea nr.317 din 26.21.2024 cu privire la veteranii de război – o dată la doi ani;</p>
+                    }
+
+                    @if (Model == Tratament.Model.Models.Enums.ServiceTypeEnum.Veterans)
+                    {
+                        <p>Dreptul la asigurarea cu bilete de tratament sanatorial, conform Legii nr.190-XV din 8 mai 2003 cu privire la veterani, îl au cetățenii Republicii Moldova, cu domiciliul permanent în Republica Moldova</p>
+
+                        <p style="text-align:justify">
+                            Dreptul la asigurarea cu bilete de tratament sanatorial
+                            gratuit în centrele de reabilitare ale Ministerului Muncii și Protecției Sociale și în alte instituții de acest tip,
+                            conform indicațiilor medicale și în limitele mijloacelor financiare destinate pentru tratamentul sanatorial al veteranilor,
+                            incluse în transferurile bugetului de stat la bugetul asigurărilor sociale de stat, îl au următoarele categoriile
+                        </p>
+
+                        <p class="text-center">***</p>
+
+                        <p style="text-align:justify">
+                            Veteranii muncii, conform art.9 şi art.16 lit.c) din Legea nr.190/2003 cu privire la veterani,
+                            care au fost decorate cu ordine şi medalii sau care s-au învrednicit de titluri onorifice ale Republicii Moldova sau ale fostei U.R.S.S.
+                            ori de distincţii departamentale şi au realizat o vechime în muncă de cel puţin 30 de ani femeile şi 35 de ani bărbaţii.
+                            Acest drept se extinde şi asupra celor care au realizat o vechime în muncă de cel puţin 35 de ani femeile şi 40 de ani bărbaţii şi care nu cad sub incidenţa art.9,
+                            cu excepția persoanelor angajate și a celor care desfăşoară activitate de antreprenoriat sub diferite forme (cu excepția deținătorilor de terenuri agricole),
+                            dacă în ultimele șase luni premergătoare lunii în care a fost eliberat biletul nu au desfășurat activitate de întreprinzător – o dată la trei ani;
+                        </p>
+
+                        <p class="text-center">***</p>
+
+                        <p style="text-align:justify">
+                            Veteranii serviciului militar, conform art.10 şi art.17 din Legea nr.190/2003 cu privire la veterani,
+                            care au fost decoraţi cu ordine şi medalii ori care s-au învrednicit de titluri onorifice ale Republicii Moldova sau ale fostei U.R.S.S.
+                            ori de distincţii departamentale şi care au dreptul la pensie pentru vechime în serviciu sau pentru limită de vârstă,
+                            precum şi militarii care au fost încadraţi în grad de dizabilitate în urma rănirii, contuziei, schilodirii sau a unei afecţiuni contractate
+                            în timpul executării serviciului militar. În cazul ieşirii la pensie pentru vechime în muncă sau la împlinirea vârstei care le dă dreptul la
+                            pensie pentru limită de vârstă, veteranii menţionaţi obţin şi drepturile stabilite pentru veteranii muncii – o dată la trei ani;
+                        </p>
+
+
+                        <p class="text-center">***</p>
+
+                        <p style="text-align:justify">
+                            Veteranii organelor afacerilor interne, ai Centrului Național Anticorupție, ai organelor securității statutului și ai sistemului administrației penitenciare, conform art.11 şi art.17 din Legea nr.190/2003 cu privire la veterani,
+                            care au fost decorate cu ordine şi medalii ori care s-au învrednicit de titluri onorifice ale Republicii Moldova sau ale fostei U.R.S.S. sau de distincţii departamentale şi care au dreptul
+                            la pensie pentru vechime în serviciu sau pentru limită de vârstă în conformitate cu legislaţia în vigoare, precum şi persoanele
+                            care au fost încadrate în grad de dizabilitate în urma rănirii, contuziei, schilodirii sau a unei afecţiuni contractate în timpul exercitării atribuţiilor de serviciu.
+                            În cazul ieşirii la pensie pentru vechime în muncă sau la împlinirea vârstei care le dă dreptul la pensie pentru limită de vârstă,
+                            veteranii menţionaţi obţin şi drepturile stabilite pentru veteranii muncii– o dată la trei ani;
+                        </p>
+
+                    }
+
+                    @if (Model == Tratament.Model.Models.Enums.ServiceTypeEnum.Cernobil)
+                    {
+                        <p>Dreptul la asigurarea cu bilete de tratament balneosanatorial, conform Legii nr.909/1992 privind protecţia socială a cetăţenilor care au avut de suferit de pe urma catastrofei de la Cernobîl, îl au cetățenii Republicii Moldova, care locuiesc în Republica Moldova şi cetățenii altor state, stabiliți cu domiciliul permanent în Republica Moldova, conform acordurilor interstatale, încadrați în categoriile menționate.</p>
+
+                        <p style="text-align:justify">
+                            Dreptul la asigurarea cu bilete de tratament sanatorial
+                            gratuit în centrele de reabilitare ale Ministerului Muncii și Protecției Sociale și în alte instituții de acest tip,
+                            conform indicațiilor medicale și în limitele mijloacelor financiare destinate pentru tratamentul sanatorial al veteranilor,
+                            incluse în transferurile bugetului de stat la bugetul asigurărilor sociale de stat, îl au următoarele categoriile
+                        </p>
+
+                        <p class="text-center">***</p>
+
+                        <p style="text-align:justify">
+                            Dreptul la asigurarea anuală cu bilete gratuite de tratament (în cazul indicaţiilor medicale) în instituţiile
+                            balneo-sanatoriale şi în limitele mijloacelor prevăzute în transferurile de la bugetul de stat la bugetul asigurărilor sociale de stat pentru anul respectiv,
+                            îl au următoarele categorii de persoane:
+                        </p>
+
+                        <ul>
+                            <li style="text-align:justify">
+                                Persoanele care s-au îmbolnăvit şi au suferit de boală actinică cauzată de avaria de la C.A.E. Cernobîl,
+                                precum şi persoanele cu dizabilităţi a căror dizabilitate e în legătură cauzală cu catastrofa de la Cernobîl,
+                                conform art.7 al Legii 909/1992;
+                            </li>
+
+
+                            <li style="text-align:justify">
+                                Persoanele care s-au îmbolnăvit de boală actinică sau au devenit persoane cu dizabilităţi în urma experienţelor nucleare,
+                                avariilor cu radiaţie ionizantă şi a consecinţelor lor la obiectivele atomice civile sau militare,
+                                conform art.22 al Legii 909/1992;
+                            </li>
+
+                            <li style="text-align:justify">
+                                Persoanele care au participat în anii 1986-1987 la lucrările de lichidare a urmărilor avariei de la C.A.E. Cernobîl,
+                                în zona de înstrăinare, precum şi militarii, lucrătorii organelor afacerilor interne, supuşii militari recrutaţi în cantonamente speciale,
+                                cei care şi-au satisfăcut în această perioadă serviciul în Forţele Armate, în trupele şi organele Comitetului pentru Securitatea Statului,
+                                în trupele de interne şi în cele de căi ferate, în alte formaţiuni militare şi care au îndeplinit lucrări de lichidare a urmărilor avariei în cauză în zona
+                                de înstrăinare, conform art.8, aliniatul 1 al Legii nr.909/1992;
+                            </li>
+
+                            <li style="text-align:justify">
+                                Persoanele care au participat în anii 1988-1990 la lucrările de lichidare a urmărilor avariei de la C.A.E. Cernobîl,
+                                în zona de înstrăinare, precum şi militarii, lucrătorii organelor afacerilor interne,
+                                supuşii militari recrutaţi în cantonamente speciale, cei care şi-au satisfăcut în această perioadă serviciul în Forţele Armatei,
+                                în trupele şi organele Comitetului pentru Securitatea Statului, în trupele de interne şi în cele de căi ferate,
+                                în alte formaţiuni militare şi care au îndeplinit lucrări de lichidare a urmărilor avariei în cauză în zona de înstrăinare,
+                                conform art.8, aliniatul 2 al Legii nr.909/1992;
+                            </li>
+
+                            <li>
+                                Copiii născuți după 26 aprilie 1986, până la atingerea vârstei de 18 ani,
+                                unul din părinții cărora a avut de suferit de pe urma catastrofei de la Cernobîl,
+                                precum şi copiilor evacuaţi din zona de înstrăinare, conform art.13 al Legii nr.909/1992.
+                            </li>
+
+                        </ul>
+                    }
+
+                    @if (Model == Tratament.Model.Models.Enums.ServiceTypeEnum.PaymentCompensation)
+                    {
+                        <p style="text-align:justify">
+                            Conform prevederilor Legii nr.909/1992 privind protecţia cetăţenilor care au avut de suferit de pe urma catastrofei de la Cernobîl,
+                            în cazul în care nu a fost posibilă procurarea şi/sau acordarea biletului conform profilului instituţiei balneosanatoriale recomandate sau există contraindicaţii
+                            medicale privind tratamentul balneosanatorial persoanele participante la lichidarea consecinţelor avariei de la C.A.E. Cernobîl
+                            şi copii lor au dreptul la o compensaţie bănească în mărimea costului mediu al unui bilet, începînd cu trimestrul doi al anului în curs
+                        </p>
+
+                        <p style="text-align:justify">
+                            Conform prevederilor Legii nr.909/1992 privind protecţia cetăţenilor care au avut de suferit de pe urma catastrofei de la Cernobîl,
+                            în cazul în care nu a fost posibilă procurarea şi/sau acordarea biletului conform profilului instituţiei balneosanatoriale recomandate sau există
+                            contraindicaţii medicale privind tratamentul balneosanatorial persoanele participante la lichidarea consecinţelor avariei de la C.A.E. Cernobîl
+                            şi copii lor au dreptul la o compensaţie bănească în mărimea costului mediu al unui bilet, începînd cu trimestrul doi al anului în curs
+                        </p>
+
+                        <p class="text-center">***</p>
+
+                        <p style="text-align:justify">
+                            Mărimea compensaţiei persoanele participante la lichidarea consecinţelor avariei de la C.A.E. Cernobîl
+                            se calculează ca preţul mediu al unui bilet estimat din media costului biletelor propuse în ofertele de preţ
+                            pentru serviciile de tratament baneosanatorial pentru persoanele adulte, prezentate de către instituţiile balneosanatoriale pentru anul de gestiune,
+                            în baza solicitărilor CNAS.
+                        </p>
+
+                        <p style="text-align:justify">
+                            Mărimea compensaţiei, copiilor persoanele participante la lichidarea consecinţelor avariei de la C.A.E.
+                            Cernobîl se calculează în baza grilei de vârste (de la 4 ani până la 7 ani, de la 7 ani până la 14 ani,
+                            de la 14 ani până la 18 ani) ca preţul mediu al unui bilet estimat din media costului biletelor propuse în ofertele de preţ
+                            pentru serviciile de tratament baneosanatorial pentru copii, prezentate de către instituţiile balneosanatoriale pentru anul de gestiune,
+                            în baza solicitărilor CNAS.
+                        </p>
+
+                        <p style="text-align:justify">
+                            Cuantumul compensaţiei se aprobă anual, prin ordin intern, de către Casa Națională de Asigurări Sociale.
+                        </p>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+

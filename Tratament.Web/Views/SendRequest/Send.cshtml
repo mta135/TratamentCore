@@ -137,19 +137,19 @@
                 <div class="col-sm-7">
 
                     <div id="DisabilitiesTreatmentTickets" style="display:none">
-                        @await Html.PartialAsync("~/Views/Partials/UtilDisabilitiesTickets_Partial.cshtml")
+                        @await Html.PartialAsync("~/Views/Partials/UtilText_Partial.cshtml", ServiceTypeEnum.Disabilities)
                     </div>
 
                     <div id="VeteransTreatmentTickets" style="display:none">
-                        @await Html.PartialAsync("~/Views/Partials/UtilVeteransTickets_Partial.cshtml")
+                        @await Html.PartialAsync("~/Views/Partials/UtilText_Partial.cshtml", ServiceTypeEnum.Veterans)
                     </div>
 
                     <div id="TicketsForCernobil" style="display:none">
-                        @await Html.PartialAsync("~/Views/Partials/UtilCernobilTickets_Partial.cshtml")
+                        @await Html.PartialAsync("~/Views/Partials/UtilText_Partial.cshtml", ServiceTypeEnum.Cernobil)
                     </div>
 
                     <div id="PaymentCompensation" style="display:none">
-                        @await Html.PartialAsync("~/Views/Partials/UtliPaymentCompensation_Partial.cshtml")
+                        @await Html.PartialAsync("~/Views/Partials/UtilText_Partial.cshtml", ServiceTypeEnum.PaymentCompensation)
                     </div>
 
                 </div>
