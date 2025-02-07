@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace Tratament.Model.Models.Enums
 {
-    public class TicketCompensationTypeEnum
+    public class CompensationTypeEnum
     {
         public const string DesabilityTicket = "Bilete pentru persoanele cu dizabilităţi";
         public const string VeteransTicket = "Bilete pentru veterani";
