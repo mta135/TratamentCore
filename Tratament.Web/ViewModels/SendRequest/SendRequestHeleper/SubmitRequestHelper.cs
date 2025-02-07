@@ -9,16 +9,16 @@ namespace Tratament.Web.ViewModels.SendRequest.Heleper
             string compType = string.Empty;
 
             if (ticketId == "1")
-                compType = CompensationTypeEnum.DesabilityTicket;
+                compType = TicketTypeEnum.DesabilityTicket;
 
             if (ticketId == "2")
-                compType = CompensationTypeEnum.VeteransTicket;
+                compType = TicketTypeEnum.VeteransTicket;
 
             if (ticketId == "3")
-                compType = CompensationTypeEnum.CernobilTicket;
+                compType = TicketTypeEnum.CernobilTicket;
 
             if (ticketId == "4")
-                compType = CompensationTypeEnum.CompenstaionTicket;
+                compType = TicketTypeEnum.CompenstaionTicket;
 
             return compType;
         }
