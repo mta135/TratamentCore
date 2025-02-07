@@ -1,6 +1,7 @@
 ﻿
 
 @model Tratament.Web.ViewModels.SendRequest.SendRequestViewModel
+@using Tratament.Model.Models.Enums
 
 @using Microsoft.Extensions.Options
 
@@ -93,20 +94,19 @@
                         <div class="col-sm-11">
 
                             <div id="DisabilitiesTicketsConfirm" style="display:none">
-                                @await Html.PartialAsync("~/Views/Partials/DisabilitiesTicketsConfirm_Partial.cshtml")
-
+                                @await Html.PartialAsync("~/Views/Partials/AgreePersonalDataProcessing_Partial.cshtml", ServiceTypeEnum.Disabilities)
                             </div>
 
                             <div id="VeteransTicketsConfirm" style="display:none">
-                                @await Html.PartialAsync("~/Views/Partials/VeteransTicketsConfirm_Partial.cshtml")
+                                @await Html.PartialAsync("~/Views/Partials/AgreePersonalDataProcessing_Partial.cshtml", ServiceTypeEnum.Veterans)
                             </div>
 
                             <div id="CernobilTicketsConfirm" style="display:none">
-                                @await Html.PartialAsync("~/Views/Partials/CernobilTicketsConfirm_Partial.cshtml")
+                                @await Html.PartialAsync("~/Views/Partials/AgreePersonalDataProcessing_Partial.cshtml", ServiceTypeEnum.Cernobil)
                             </div>
 
                             <div id="PaymentCompensationConfirm" style="display:none">
-                                @await Html.PartialAsync("~/Views/Partials/PaymentCompensationConfirm_Partial.cshtml")
+                                @await Html.PartialAsync("~/Views/Partials/AgreePersonalDataProcessing_Partial.cshtml", ServiceTypeEnum.PaymentCompensation)
                             </div>
 
                         </div>
