@@ -11,8 +11,6 @@
 
 <div class="container">
 
-
-
     <form method="post" enctype="multipart/form-data" asp-controller="SendRequest" asp-action="Send" id="sendRequestForm" >
 
         <div class="mt-3">
@@ -60,35 +58,34 @@
 
                     <hr />
 
-                    <div class="row" id="chech-confirm-data-error" style="display:none">
+                    <div class="row" id="confirm-error-message" style="display:none">
                         <div class="col-sm-10">
-                            <span id="chech-confirm-data-error" style="color: red;">Acest cimp este obligator</span>
+                            <span style="color: red;">Acest cimp este obligator</span>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-1" id="checkConfirmationData" style="display:none">
-                            <input id="checkConfirmation" type="checkbox" name="CheckConfirmation" data-val="true">
+                    <div class="row" id="verified-data-container">
+                        <div class="col-sm-1">
+                            <input id="checkBox-verify-data" type="checkbox" name="CheckBoxVerificationData" data-val="true">
                         </div>
 
-                        <div class="col-sm-11" id="dataVerification">
+                        <div class="col-sm-11">
                             <p style="text-align:justify">
                                 Am verificat datele introduse și confirm corectitudinea lor, pe proprie răspundere.
                             </p>
                         </div>
                     </div>
 
-
-                    <div class="row" id="error-corect-data" style="display:none">
+                    <div class="row" id="agree-data-error-message" style="display:none">
                         <div class="col-sm-10">
-                            <span id="error-corect-data" style="color: red;">Acest cimp este obligator</span>
+                            <span style="color: red;">Acest cimp este obligator</span>
                         </div>
                     </div>
 
                     <div class="row">
 
-                        <div class="col-sm-1" style="display:none" id="ConfirmCorectData">
-                            <input id="CorrectData" type="checkbox" name="CorrectData" data-val="true">
+                        <div class="col-sm-1" style="display:none" id="agree-data-processing">
+                            <input id="checkbox-agree-data-processing" type="checkbox" name="CorrectData" data-val="true">
                         </div>
 
                         <div class="col-sm-11">
@@ -166,74 +163,65 @@
 
     const sections = {
         "1": ["DisabilitiesTreatmentTickets", "DisabilitiesTicketsConfirm"],
-        "2": ["VeteransTreatmentTickets", "DisabilitiesTicketsConfirm"],
+        "2": ["VeteransTreatmentTickets", "VeteransTicketsConfirm"],
         "3": ["TicketsForCernobil", "CernobilTicketsConfirm"],
         "4": ["PaymentCompensation", "PaymentCompensationConfirm"]
     };
 
     const ticketTypeDropdown = document.getElementById("tiketType");
-    const correctDataCheckbox = document.getElementById("CorrectData");
+    const checkboxAgreeDataProcessing = document.getElementById("checkbox-agree-data-processing");
 
-    const errorCorrectData = document.getElementById("error-corect-data");
+    const agreeDataErrorMessage = document.getElementById("agree-data-error-message");
     const sendRequestForm = document.getElementById("sendRequestForm");
 
-    const confirmCorectData = document.getElementById("ConfirmCorectData");
-    const chechConfirmDiv = document.getElementById("chech-confirm-div");
+    const agreeDataProcessing = document.getElementById("agree-data-processing");
 
-    const checkBoxCheckConfirmation = document.getElementById("checkConfirmation");
-    const divConfirmDataError = document.getElementById("chech-confirm-data-error");
+    const confirmErrorMessage = document.getElementById("confirm-error-message");
+    const checkBoxVerifyData = document.getElementById("checkBox-verify-data");
 
-   
     ticketTypeDropdown.addEventListener("change", updateDivVisibility);
 
     function updateDivVisibility() {
+
         hideUtilDivs();
 
-        toggleDivCorrectConfirm(false, null, sections);
+        toggleConfirmCheckBox(false, null, sections);
 
         const sectionsById = getSectionsById(ticketTypeDropdown.value);
 
         showUtilDivs(sectionsById);
 
-        toggleDivCorrectConfirm(true, GetTicketTypeId(ticketTypeDropdown), sections);
+        toggleConfirmCheckBox(true, getTicketTypeId(ticketTypeDropdown), sections);
     }
 
     sendRequestForm.addEventListener("submit", validateCorrectData);
 
     function validateCorrectData(event) {
 
-        if (IsVisible(correctDataCheckbox) && IsVisible(checkBoxCheckConfirmation)) {
+        if (!IsElementVisible(checkboxAgreeDataProcessing) && !IsElementVisible(checkBoxVerifyData)) return;
 
-            if (!correctDataCheckbox.checked) {
+        validateCheckbox(event, checkboxAgreeDataProcessing, agreeDataErrorMessage);
+        validateCheckbox(event, checkBoxVerifyData, confirmErrorMessage);
+    }
 
-                event.preventDefault();
-                errorCorrectData.style.display = 'block';
-            }
-            else {
-                errorCorrectData.style.display = 'none';
-            }
+    function validateCheckbox(event, checkbox, errorElement) {
 
-            if (!checkBoxCheckConfirmation.checked) {
+        if (!checkbox.checked) {
+            event.preventDefault();
+            errorElement.style.display = 'block';
 
-                event.preventDefault();
-                divConfirmDataError.style.display = 'block';
-            }
-            else {
-                divConfirmDataError.style.display = 'none';
-            }
+        } else {
+            errorElement.style.display = 'none';
         }
     }
 
-
-    correctDataCheckbox.addEventListener("change", () => errorCorrectData.style.display = "none");
-
-
-    checkBoxCheckConfirmation.addEventListener("change", () => divConfirmDataError.style.display = "none");
-
+    checkBoxVerifyData.addEventListener("change", () => confirmErrorMessage.style.display = "none");
+    checkboxAgreeDataProcessing.addEventListener("change", () => agreeDataErrorMessage.style.display = "none");
 
     function hideUtilDivs() {
 
         const allDivIds = Object.values(sections).flat();
+
         allDivIds.forEach(divId => {
             const divElement = document.getElementById(divId);
             if (divElement) {
@@ -241,7 +229,6 @@
             }
         });
     }
-
 
     function showUtilDivs(divIds) {
 
@@ -253,45 +240,27 @@
         });
     }
 
-
     function getSectionsById(ticketTypeId) {
         return sections[ticketTypeId] || [];
     }
 
-
-    function toggleDivCorrectConfirm(shouldHide, selectedIndex, sections) {
-
-        const divCorrectData = document.getElementById("ConfirmCorectData");
-        const divCheckConfirmData = document.getElementById("checkConfirmationData");
-
-        const divDataVerification = document.getElementById("dataVerification");
-
-        if (!divCorrectData)
-            return;
+    function toggleConfirmCheckBox(shouldHide, selectedIndex, sections) {
 
         if (shouldHide && Object.keys(sections).includes(selectedIndex)) {
 
-            divCorrectData.style.display = "block";
-            divCheckConfirmData.style.display = "block";
-            divDataVerification.style.display = "block";
+            $("#agree-data-processing").show();
+            $("#verified-data-container").show();
         }
 
         else {
-            divCorrectData.style.display = "none";
-            divCheckConfirmData.style.display = "none";
-            divDataVerification.style.display = "none";
-
+            $("#agree-data-processing").hide();
+            $("#verified-data-container").hide();
         }
     }
 
-
-    function GetTicketTypeId(ticketTypeDropdown) {
-
-        var getvalue = ticketTypeDropdown.options[ticketTypeDropdown.selectedIndex].value;
-
-        return getvalue;
+    function getTicketTypeId(ticketTypeDropdown) {
+        return ticketTypeDropdown.options[ticketTypeDropdown.selectedIndex].value;
     }
-
 
     document.getElementById("DNTCaptchaInputText").addEventListener("input", function () {
 
@@ -307,8 +276,7 @@
 
     });
 
-
-    function IsVisible(divElement) {
+    function IsElementVisible(divElement) {
 
         if ($(divElement).is(':visible')) {
             return true;
@@ -316,12 +284,13 @@
         return false;
     }
 
+    window.addEventListener("load", windowLoad);
 
-    window.addEventListener("load", function () {
+    function windowLoad() {
 
-        console.log("Window load event; Selected Item Id: " + GetTicketTypeId(ticketTypeDropdown));
+        console.log("Window load event; Selected Item Id: " + getTicketTypeId(ticketTypeDropdown));
         updateDivVisibility();
-    });
+    }
 
 </script>
 
