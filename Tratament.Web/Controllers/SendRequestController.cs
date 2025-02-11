@@ -72,7 +72,7 @@ namespace Tratament.Web.Controllers
 
             }
             
-            return null;
+            return View();
         }
 
         [HttpGet]
