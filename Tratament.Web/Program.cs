@@ -6,6 +6,7 @@ using Tratament.Web.Recaptcha.RecaptchaHelpers;
 using Tratament.Web.Services.MConnect;
 using Tratament.Web.LoggerSetup;
 using Tratament.Web.Services.MConnect.MConnectCore;
+using Tratament.Web.Services.Tickets;
 
 internal class Program
 {
@@ -56,6 +57,7 @@ internal class Program
         #region Dependency Injection
 
         builder.Services.AddScoped<IMConnectService, MConnectService>();
+        builder.Services.AddScoped<ITicketService, TicketService>();
 
         #endregion
 
