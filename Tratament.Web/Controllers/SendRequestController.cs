@@ -10,6 +10,10 @@ using Tratament.Web.Services.MConnect.Models.Person;
 using Tratament.Model.Models.ExternalServices;
 using Tratament.Web.Core;
 using static ServiceReference.BiletePortTypeClient;
+using Tratament.Web.Services.Tickets;
+using Tratament.Model.Models.EcerereTicketService;
+
+
 
 namespace Tratament.Web.Controllers
 {
@@ -22,13 +26,18 @@ namespace Tratament.Web.Controllers
         private IDNTCaptchaValidatorService _validatorService; 
         private DNTCaptchaOptions _captchoptions;
 
-        public SendRequestController(IRecaptchaService recaptchaService, IMConnectService mConnectService, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> captchaOptions)
+
+        private ITicketService _ticketService;
+
+        public SendRequestController(IRecaptchaService recaptchaService, IMConnectService mConnectService, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> captchaOptions, ITicketService ticketService)
         {    
             _recaptchaService = recaptchaService;
             _mConnectService = mConnectService;
 
             _validatorService = validatorService;
             _captchoptions = captchaOptions == null ? throw new ArgumentNullException(nameof(captchaOptions)) : captchaOptions.Value;
+
+            _ticketService = ticketService;
         }
 
         [HttpGet]
@@ -58,14 +67,19 @@ namespace Tratament.Web.Controllers
             }
 
             PersonFilter personFilter = new();
-
             personFilter.IDNP = requestViewModel.Idnp;
 
             PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
 
             if (mconnectPerson != null)
             {
-                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, "62", requestViewModel.TicketTypeId);
+                TicketInsertModel insertModel = SetInsertToCnasData(mconnectPerson, requestViewModel); // acest obiect va trebui transmis in sesiune...
+
+                (string cerereId, string errorNumber) = await _ticketService.InsertTicketToEcerere(insertModel);
+
+                // nu stiu daca trebui aceasta clasa.
+                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
+
                 HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
                 return RedirectToAction("Submited", "SendRequest");
@@ -102,15 +116,13 @@ namespace Tratament.Web.Controllers
             return pensionType;
         }
 
-        public async Task<IActionResult> TestMconnect()
+        public async Task<IActionResult> TestMconnect() // aceasta metoda va trebui stearsa
         {
 
             try
             {
-
                 PersonFilter personFilter = new PersonFilter();
                 personFilter.IDNP = "2010500696009";
-
 
                 ServiceReference.BiletePortTypeClient client = new ServiceReference.BiletePortTypeClient(EndpointConfiguration.SOAP11Endpoint);
                 var value = await client.ins_ecerereAsync(1, "2010500696009", "MTA", "MTA", "4598", "Adresa client", "7895321", "@gmail.com", null, "M");
@@ -128,6 +140,7 @@ namespace Tratament.Web.Controllers
         }
 
 
+        // cread ca asteasca funtie va trebuie de transferta in alta clasa
         public SubmitViewModel SetSubmitedData(PersonModel mconnectPerson, string requestNumber, string ticketTypeId)
         {
             SubmitViewModel submitViewModel = new SubmitViewModel();
@@ -147,5 +160,33 @@ namespace Tratament.Web.Controllers
             return submitViewModel;
         }
 
-     }
+
+        public TicketInsertModel SetInsertToCnasData(PersonModel persone, SendRequestViewModel sendRequest)
+        {
+            TicketInsertModel ticketInsertModel = new TicketInsertModel();
+
+            ticketInsertModel.Vpres_rf = Convert.ToInt16(sendRequest.TicketTypeId);
+            ticketInsertModel.Vidnp = persone.IDNP;
+
+            ticketInsertModel.Vnume = persone.Name;
+            ticketInsertModel.Vprenume = persone.Surname;
+            ticketInsertModel.Vcuatm = persone.PersoneAddress.AdministrativeCode;
+
+            ticketInsertModel.Vadresa = SetPersoneAddress(persone.PersoneAddress);
+            ticketInsertModel.Vtelefon = sendRequest.Phone;
+            ticketInsertModel.Vemail = sendRequest.Email;
+
+            ticketInsertModel.VnascutD = persone.DateOfBirth;
+            ticketInsertModel.Vsex = null;
+
+            return ticketInsertModel;
+        }
+
+
+        private string SetPersoneAddress(PersoneAddress adr)
+        {
+            return  adr.Country + " " + adr.Region + " " + adr.Locality + " " + adr.Locality + " " + adr.Street + " " + adr.House + " " + adr.Block + " " + adr.Flat;
+        }
+
+    }
 }

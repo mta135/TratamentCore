@@ -1,10 +1,11 @@
-﻿using Tratament.Web.ViewModels.SendRequest;
+﻿using Tratament.Model.Models.EcerereTicketService;
+using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Services.Tickets
 {
     public interface ITicketService
     {
-        public void InsertTicketToEcerere(SubmitViewModel submitViewModel);
+        public Task<(string cerereId, string errorNumber)> InsertTicketToEcerere(TicketInsertModel ticket);
        
     }
 }

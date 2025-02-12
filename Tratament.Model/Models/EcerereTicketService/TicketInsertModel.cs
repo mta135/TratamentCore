@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tratament.Model.Models.EcerereTicketService
 {
-    public class TicketServiceModel
+    public class TicketInsertModel
     {
         public short? Vpres_rf { get; set; }
 
