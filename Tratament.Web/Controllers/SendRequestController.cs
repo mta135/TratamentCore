@@ -9,7 +9,7 @@ using Tratament.Web.ViewModels.SendRequest;
 using Tratament.Web.Services.MConnect.Models.Person;
 using Tratament.Model.Models.ExternalServices;
 using Tratament.Web.Core;
-using Tratament.Model.Models.Enums;
+using static ServiceReference.BiletePortTypeClient;
 
 namespace Tratament.Web.Controllers
 {
@@ -104,21 +104,26 @@ namespace Tratament.Web.Controllers
 
         public async Task<IActionResult> TestMconnect()
         {
-            PersonFilter personFilter = new PersonFilter();
-            personFilter.IDNP = "2010500696009";
 
-            PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
+            try
+            {
 
-            //if(mconnectPerson != null)
-            //{
-            //    SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, "62", "1");
+                PersonFilter personFilter = new PersonFilter();
+                personFilter.IDNP = "2010500696009";
 
-            //    HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
-            //    return RedirectToAction("Submited", "SendRequest");
-            //}
+                ServiceReference.BiletePortTypeClient client = new ServiceReference.BiletePortTypeClient(EndpointConfiguration.SOAP11Endpoint);
+                var value = await client.ins_ecerereAsync(1, "2010500696009", "MTA", "MTA", "4598", "Adresa client", "7895321", "@gmail.com", null, "M");
 
-            return Content("Mconnect IDNP: " + mconnectPerson.IDNP);
+            }
+            catch (Exception ex)
+            {
+                string request = ex.ToString();
+            }
+
+            return View();
+
+            //return Content("Mconnect IDNP: " + mconnectPerson.IDNP);
 
         }
 

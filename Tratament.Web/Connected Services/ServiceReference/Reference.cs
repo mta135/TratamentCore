@@ -171,63 +171,6 @@ namespace ServiceReference
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.wso2.org/dataservice", ConfigurationName="ServiceReference.BiletePortType")]
-    public interface BiletePortType
-    {
-        
-        // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(Action="urn:test", ReplyAction="urn:testResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(ServiceReference.DataServiceFault), Action="urn:testDataServiceFault", Name="DataServiceFault")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Threading.Tasks.Task<ServiceReference.testResponse> testAsync(ServiceReference.testRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="urn:ins_ecerere", ReplyAction="urn:ins_ecerereResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(ServiceReference.DataServiceFault), Action="urn:ins_ecerereDataServiceFault", Name="DataServiceFault")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        System.Threading.Tasks.Task<ServiceReference.ins_ecerereResponse> ins_ecerereAsync(ServiceReference.ins_ecerereRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="test", WrapperNamespace="http://ws.wso2.org/dataservice", IsWrapped=true)]
-    public partial class testRequest
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.wso2.org/dataservice", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<short> param0;
-        
-        public testRequest()
-        {
-        }
-        
-        public testRequest(System.Nullable<short> param0)
-        {
-            this.param0 = param0;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="test", WrapperNamespace="http://ws.wso2.org/dataservice", IsWrapped=true)]
-    public partial class testResponse
-    {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://ws.wso2.org/dataservice", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<short> param0;
-        
-        public testResponse()
-        {
-        }
-        
-        public testResponse(System.Nullable<short> param0)
-        {
-            this.param0 = param0;
-        }
-    }
-    
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -250,6 +193,17 @@ namespace ServiceReference
                 this.cerere_idField = value;
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.Tools.ServiceModel.Svcutil", "2.2.0-preview1.23462.5")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://ws.wso2.org/dataservice", ConfigurationName="ServiceReference.BiletePortType")]
+    public interface BiletePortType
+    {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="urn:ins_ecerere", ReplyAction="urn:ins_ecerereResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ServiceReference.DataServiceFault), Action="urn:ins_ecerereDataServiceFault", Name="DataServiceFault")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        System.Threading.Tasks.Task<ServiceReference.ins_ecerereResponse> ins_ecerereAsync(ServiceReference.ins_ecerereRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -380,11 +334,6 @@ namespace ServiceReference
         public BiletePortTypeClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress)
         {
-        }
-        
-        public System.Threading.Tasks.Task<ServiceReference.testResponse> testAsync(ServiceReference.testRequest request)
-        {
-            return base.Channel.testAsync(request);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
