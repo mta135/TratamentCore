@@ -31,7 +31,7 @@ namespace Tratament.Web.Core.PrintModule
 
                             rightColumn.Item().Text("Casa Naționala de Asigurări Sociale").FontSize(14).Bold().AlignRight();
 
-                            rightColumn.Item().Text("Data recipisei: " + submitViewModel.RequestSubmitDate.Value.ToString("dd.MM.yyyy")).FontSize(14).AlignCenter();
+                            rightColumn.Item().Text("Data recipisei: " + submitViewModel.RequestSubmitDate.Value.ToString("dd/MM/yyyy")).FontSize(14).AlignCenter();
 
                         });
 
@@ -58,7 +58,7 @@ namespace Tratament.Web.Core.PrintModule
 
                             AddRow("Numărul cererii:", submitViewModel.RequestNumber);
 
-                            AddRow("Data depunerii:", submitViewModel.RequestSubmitDate.Value.ToString("dd.MM.yyyy"));
+                            AddRow("Data depunerii:", submitViewModel.RequestSubmitDate.Value.ToString("dd/MM/yyyy"));
 
                             AddRow("Detalii:", "Cererea a fost acceptată cu succes.");
                         });
