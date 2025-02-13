@@ -1,4 +1,4 @@
-﻿namespace Tratament.Web.ViewModels.Error
+﻿namespace Tratament.Web.ViewModels.SubmitRequest
 {
     public class ErrorViewModel
     {

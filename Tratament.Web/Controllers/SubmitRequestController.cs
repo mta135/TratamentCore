@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tratament.Web.Core.PrintModule;
 using Tratament.Web.Core;
-using Tratament.Web.ViewModels.SendRequest;
-using Tratament.Web.ViewModels.Error;
 using Tratament.Model.Models.Enums;
+using Tratament.Web.ViewModels.SubmitRequest;
 
 namespace Tratament.Web.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using Tratament.Web.ViewModels.SendRequest;
+﻿using Tratament.Web.ViewModels.SubmitRequest;
 
 namespace Tratament.Web.Core.PrintModule
 {

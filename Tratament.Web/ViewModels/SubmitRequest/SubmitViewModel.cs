@@ -1,4 +1,4 @@
-﻿namespace Tratament.Web.ViewModels.SendRequest
+﻿namespace Tratament.Web.ViewModels.SubmitRequest
 {
     public class SubmitViewModel
     {

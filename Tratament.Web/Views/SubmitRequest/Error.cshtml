@@ -1,25 +1,24 @@
-﻿@model Tratament.Web.ViewModels.Error.ErrorViewModel
-
+﻿@model Tratament.Web.ViewModels.SubmitRequest.ErrorViewModel
 
 <div class="container mt-4">
-        <div class="card">
+    <div class="card">
 
-            <div class="card-body">
+        <div class="card-body">
 
-                <div class="row">
-                    <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
 
-                        <div class="text-center">
-                            <img src="~/images/warning.png" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h3 class="text-center">@(Model.ErrorText)</h3>
+                    <div class="text-center">
+                        <img src="~/images/warning.png" />
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="text-center">@(Model.ErrorText)</h3>
+                </div>
+            </div>
         </div>
+    </div>
 </div>

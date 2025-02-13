@@ -13,6 +13,7 @@ using static ServiceReference.BiletePortTypeClient;
 using Tratament.Web.Services.Tickets;
 using Tratament.Model.Models.EcerereTicketService;
 using Tratament.Model.Models.Enums;
+using Tratament.Web.ViewModels.SubmitRequest;
 
 
 
