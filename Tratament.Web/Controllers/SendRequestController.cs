@@ -62,11 +62,11 @@ namespace Tratament.Web.Controllers
 
             if(!_validatorService.HasRequestValidCaptchaEntry(Language.English, DisplayMode.ShowDigits))
             {
-                ViewBag.IsVerified = true;
                 ModelState.AddModelError(_captchoptions.CaptchaComponent.CaptchaInputName, "Codul de siguranță a fost introdus greșit"); 
-
                 return View("Send");
             }
+
+            #region MConnect
 
             PersonFilter personFilter = new() { IDNP = requestViewModel.Idnp };
             PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
@@ -75,16 +75,20 @@ namespace Tratament.Web.Controllers
             {
                 return RedirectToAction("Error", "SubmitRequest", new { error = (int)ErrorTypeEnum.MconnectError });
             }
-                
-            TicketInsertModel insertModel = SetTicketInsertData(mconnectPerson, requestViewModel);
 
-            string cerereId = await _ticketService.InsertTicketToEcerere(insertModel);
+            #endregion
+
+            #region CNAS
+
+            string cerereId = await _ticketService.InsertTicketToEcerere(SetTicketInsertData(mconnectPerson, requestViewModel));
 
             if (string.IsNullOrWhiteSpace(cerereId))
             {
                 return RedirectToAction("Error", "SubmitRequest", new { error = (int)ErrorTypeEnum.InsertToCnasError });
             }
-               
+
+            #endregion
+
             SubmitViewModel submitModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
             HttpContext.Session.SetObject("SubmitData", submitModel);
 

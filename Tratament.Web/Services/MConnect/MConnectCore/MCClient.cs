@@ -29,9 +29,9 @@ namespace Tratament.Web.Services.MConnect.MConnectCore
             return base.GetResponseBody(responseSettings, responseBody);
         }
 
-        public string BuildContent(string parameter, MConnectActionType type)
+        public string BuildContent(string parameter)
         {
-            string result = type == MConnectActionType.Person ? BuildContentXML("GetPersonDataForActualization", "IDNP", parameter) : BuildContentXML("GetLegalEntity", "IDNO", parameter);
+            string result = BuildContentXML("GetPersonDataForActualization", "IDNP", parameter);
 
             return result;
         }

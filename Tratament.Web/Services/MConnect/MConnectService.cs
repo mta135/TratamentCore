@@ -24,7 +24,7 @@ namespace Tratament.Web.Services.MConnect
         {
             PersonParser person = new PersonParser();
 
-            (XmlDocument document, XmlNode node) = await GetResponse(filter.IDNP, MConnectActionType.Person);
+            (XmlDocument document, XmlNode node) = await GetResponse(filter.IDNP);
 
             PersonModel personAPI = await person.GetParsedPerson(document);
 
@@ -39,20 +39,19 @@ namespace Tratament.Web.Services.MConnect
         /// <param name="parameter">IDNP/IDNO</param>
         /// <param name="type">Person/Org</param>
         /// <returns>XML</returns>
-        private async Task<Tuple<XmlDocument, XmlNode>> GetResponse(string parameter, MConnectActionType type)
+        private async Task<Tuple<XmlDocument, XmlNode>> GetResponse(string parameter)
         {
             MCClient mCClient = new MCClient(_httpClientFactory);
 
             //Создаются параметры - для дальнейшего построения XML
             string endpointUrl = _configuration.GetValue<string>("MConnect:EndPointUrl");
-            string soapAction = type == MConnectActionType.Person ? _configuration.GetValue<string>("MConnect:GetPerson")
-                                                                    : _configuration.GetValue<string>("MConnect:GetLegalEntity");
-
+            string soapAction = _configuration.GetValue<string>("MConnect:GetPerson");
+                                                                  
             string callingUser = parameter;
             string RequestHeaders = $"CallingEntity: 1004600030235\r\nCallingUser: {callingUser} \r\nCallBasis: cnas\r\nCallReason: cnas";
 
             //Здесь строится XML Request в зависимости от type
-            var content = mCClient.BuildContent(parameter, type);
+            var content = mCClient.BuildContent(parameter);
             var request = mCClient.BuildRequest(new RequestSettings
             {
                 Uri = new Uri(endpointUrl),
@@ -64,7 +63,7 @@ namespace Tratament.Web.Services.MConnect
             });
 
             string _sendedRequest = await request.Content.ReadAsStringAsync();
-            WriteLog.Common.Info($"MConnect {type} Request: \n {_sendedRequest}");
+            WriteLog.Common.Info($"MConnect Person Request: \n {_sendedRequest}");
   
             var httpResponse = await mCClient.SendRequest(request, 45000);
             string Response = await httpResponse.Content.ReadAsStringAsync();
@@ -77,7 +76,7 @@ namespace Tratament.Web.Services.MConnect
 
             (XmlDocument document, XmlNode node) = mCClient.GetResponseBody(responseSettings, Response);
 
-            WriteLog.Common.Info($"MConnect {type} Response: \n {Response}");
+            WriteLog.Common.Info($"MConnect Person Response: \n {Response}");
             return new Tuple<XmlDocument, XmlNode>(document, node);
 
         }
