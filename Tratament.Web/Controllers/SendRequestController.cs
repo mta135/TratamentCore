@@ -109,7 +109,7 @@ namespace Tratament.Web.Controllers
                 personFilter.IDNP = "2010500696009";
 
                 ServiceReference.BiletePortTypeClient client = new ServiceReference.BiletePortTypeClient(EndpointConfiguration.SOAP11Endpoint);
-                var value = await client.ins_ecerereAsync(1, "2010500696009", "MTA", "MTA", "4598", "Adresa client", "7895321", "@gmail.com", null, "M");
+                var value = await client.ins_ecerereAsync(1, "2010500696009", "MTA", "MTA", "4598", "Adresa client", "7895321", "@gmail.com", DateTime.Now, null);
 
             }
             catch (Exception ex)
@@ -161,7 +161,7 @@ namespace Tratament.Web.Controllers
             ticketInsertModel.Vemail = sendRequest.Email;
 
             ticketInsertModel.VnascutD = persone.DateOfBirth;
-            ticketInsertModel.Vsex = "F";
+            ticketInsertModel.Vsex = null;
 
             return ticketInsertModel;
         }
