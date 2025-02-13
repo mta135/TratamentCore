@@ -69,19 +69,22 @@ namespace Tratament.Web.Controllers
             }
 
             PersonFilter personFilter = new() { IDNP = requestViewModel.Idnp };
-
             PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
 
             if (string.IsNullOrWhiteSpace(mconnectPerson.IDNP))
+            {
                 return RedirectToAction("Error", "SubmitRequest", new { error = (int)ErrorTypeEnum.MconnectError });
-
+            }
+                
             TicketInsertModel insertModel = SetTicketInsertData(mconnectPerson, requestViewModel);
 
             string cerereId = await _ticketService.InsertTicketToEcerere(insertModel);
 
             if (string.IsNullOrWhiteSpace(cerereId))
+            {
                 return RedirectToAction("Error", "SubmitRequest", new { errorType = (int)ErrorTypeEnum.InsertToCnasError });
-
+            }
+               
             SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
             HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
