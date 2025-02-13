@@ -73,12 +73,11 @@ namespace Tratament.Web.Controllers
 
             if (mconnectPerson != null)
             {
-                TicketInsertModel insertModel = SetInsertToCnasData(mconnectPerson, requestViewModel); // acest obiect va trebui transmis in sesiune...
+                TicketInsertModel insertModel = SetTicketInsertData(mconnectPerson, requestViewModel); // acest obiect va trebui transmis in sesiune...
 
-                (string cerereId, string errorNumber) = await _ticketService.InsertTicketToEcerere(insertModel);
-
-                // nu stiu daca trebui aceasta clasa.
-                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
+                string cerereId = await _ticketService.InsertTicketToEcerere(insertModel);
+    
+                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);     // nu stiu daca trebui aceasta clasa.
 
                 HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
@@ -161,7 +160,7 @@ namespace Tratament.Web.Controllers
         }
 
 
-        public TicketInsertModel SetInsertToCnasData(PersonModel persone, SendRequestViewModel sendRequest)
+        public TicketInsertModel SetTicketInsertData(PersonModel persone, SendRequestViewModel sendRequest)
         {
             TicketInsertModel ticketInsertModel = new TicketInsertModel();
 

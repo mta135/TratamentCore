@@ -8,7 +8,7 @@ namespace Tratament.Web.Services.Tickets
 {
     public class TicketService : ITicketService
     {
-        public async Task<(string cerereId, string errorNumber)> InsertTicketToEcerere(TicketInsertModel ticket)
+        public async Task<string> InsertTicketToEcerere(TicketInsertModel ticket)
         {
             try
             {
@@ -19,14 +19,14 @@ namespace Tratament.Web.Services.Tickets
 
                 string cerereId = response.Element.FirstOrDefault().cerere_id;
 
-                return (cerereId, null);
+                return cerereId;
 
             }
             catch (Exception ex)
             {
                 WriteLog.Common.Error("InsertTicketToEcerere error: ", ex);
 
-                return (null, "1");
+                return null;
             }
         }
     }
