@@ -82,7 +82,7 @@ namespace Tratament.Web.Controllers
 
             if (string.IsNullOrWhiteSpace(cerereId))
             {
-                return RedirectToAction("Error", "SubmitRequest", new { errorType = (int)ErrorTypeEnum.InsertToCnasError });
+                return RedirectToAction("Error", "SubmitRequest", new { error = (int)ErrorTypeEnum.InsertToCnasError });
             }
                
             SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
