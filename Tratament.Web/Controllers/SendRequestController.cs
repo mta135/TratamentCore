@@ -12,6 +12,7 @@ using Tratament.Web.Core;
 using static ServiceReference.BiletePortTypeClient;
 using Tratament.Web.Services.Tickets;
 using Tratament.Model.Models.EcerereTicketService;
+using Tratament.Web.ViewModels.SendRequest.Heleper;
 
 
 
@@ -181,10 +182,11 @@ namespace Tratament.Web.Controllers
             return ticketInsertModel;
         }
 
-
         private string SetPersoneAddress(PersoneAddress adr)
         {
-            return  adr.Country + " " + adr.Region + " " + adr.Locality + " " + adr.Locality + " " + adr.Street + " " + adr.House + " " + adr.Block + " " + adr.Flat;
+            string address = adr.Country + " " + adr.Region + " " + adr.Locality + " " + adr.Locality + " " + adr.Street + " " + adr.House + " " + adr.Block + " " + adr.Flat;
+
+            return SubmitRequestHelper.NormalizeStringLength(address, 50);
         }
 
     }

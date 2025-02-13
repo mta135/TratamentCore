@@ -22,5 +22,11 @@ namespace Tratament.Web.ViewModels.SendRequest.Heleper
 
             return compType;
         }
+
+
+        public static string  NormalizeStringLength(string value, int maxLength)
+        {
+            return value.Length <= maxLength ? value : value.Substring(0, maxLength);
+        }
     }
 }
