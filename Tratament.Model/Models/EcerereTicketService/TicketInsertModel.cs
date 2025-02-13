@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tratament.Model.Models.EcerereTicketService
+﻿namespace Tratament.Model.Models.EcerereTicketService
 {
     public class TicketInsertModel
     {

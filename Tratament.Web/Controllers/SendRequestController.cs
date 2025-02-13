@@ -12,8 +12,6 @@ using Tratament.Web.Core;
 using static ServiceReference.BiletePortTypeClient;
 using Tratament.Web.Services.Tickets;
 using Tratament.Model.Models.EcerereTicketService;
-using Tratament.Web.ViewModels.SendRequest.Heleper;
-using static QuestPDF.Helpers.Colors;
 using Tratament.Model.Models.Enums;
 
 

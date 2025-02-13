@@ -48,7 +48,7 @@ namespace Tratament.Web.Controllers
             switch(error)
             {
                 case (int)ErrorTypeEnum.MconnectError:
-                    errorViewModel.ErrorText = "A apărut o eroare la recepționarea datelor prin Serviciul Mconnect.";
+                    errorViewModel.ErrorText = "A apărut o eroare la recepționarea datelor prin serviciul Mconnect.";
                     break;
 
                 case (int)ErrorTypeEnum.InsertToCnasError:
