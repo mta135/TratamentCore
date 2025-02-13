@@ -85,8 +85,8 @@ namespace Tratament.Web.Controllers
                 return RedirectToAction("Error", "SubmitRequest", new { error = (int)ErrorTypeEnum.InsertToCnasError });
             }
                
-            SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
-            HttpContext.Session.SetObject("SubmitData", submitViewModel);
+            SubmitViewModel submitModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
+            HttpContext.Session.SetObject("SubmitData", submitModel);
 
             return RedirectToAction("Submited", "SubmitRequest");
         }
