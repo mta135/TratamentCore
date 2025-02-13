@@ -3,6 +3,7 @@ using Tratament.Web.Core.PrintModule;
 using Tratament.Web.Core;
 using Tratament.Web.ViewModels.SendRequest;
 using Tratament.Web.ViewModels.Error;
+using Tratament.Model.Models.Enums;
 
 namespace Tratament.Web.Controllers
 {
@@ -21,9 +22,9 @@ namespace Tratament.Web.Controllers
             return View(submitViewModel);
         }
 
-        public IActionResult Error(int errorType)
+        public IActionResult Error(int error)
         {
-            ErrorViewModel errorViewModel = SetErrorType(errorType);
+            ErrorViewModel errorViewModel = SetErrorType(error);
 
             return View("~/Views/SubmitRequest/Error.cshtml", errorViewModel);
         }
@@ -40,18 +41,18 @@ namespace Tratament.Web.Controllers
 
         }
 
-        private ErrorViewModel SetErrorType(int errorType)
+        private ErrorViewModel SetErrorType(int error)
         {
             ErrorViewModel errorViewModel = new ErrorViewModel();
 
-            switch(errorType)
+            switch(error)
             {
-                case 1:
-                    errorViewModel.ErrorText = "A aparut o eroare la receptionarea datelor din Serviciul Mconect";
+                case (int)ErrorTypeEnum.MconnectError:
+                    errorViewModel.ErrorText = "A apărut o eroare la recepționarea datelor prin Serviciul Mconnect.";
                     break;
 
-                case 2:
-                    errorViewModel.ErrorText = "A aparut o eroare a transmiterea datelor la CNAS.";
+                case (int)ErrorTypeEnum.InsertToCnasError:
+                    errorViewModel.ErrorText = "A apărut o eroare la transmiterea datelor la CNAS.";
                     break;
             }
 

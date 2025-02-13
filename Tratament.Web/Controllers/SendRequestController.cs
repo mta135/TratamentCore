@@ -14,6 +14,7 @@ using Tratament.Web.Services.Tickets;
 using Tratament.Model.Models.EcerereTicketService;
 using Tratament.Web.ViewModels.SendRequest.Heleper;
 using static QuestPDF.Helpers.Colors;
+using Tratament.Model.Models.Enums;
 
 
 
@@ -72,14 +73,14 @@ namespace Tratament.Web.Controllers
             PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
 
             if (string.IsNullOrWhiteSpace(mconnectPerson.IDNP))
-                return RedirectToAction("Error", "SubmitRequest", new { errorType = 1 });
+                return RedirectToAction("Error", "SubmitRequest", new { error = (int)ErrorTypeEnum.MconnectError });
 
             TicketInsertModel insertModel = SetTicketInsertData(mconnectPerson, requestViewModel);
 
             string cerereId = await _ticketService.InsertTicketToEcerere(insertModel);
 
             if (string.IsNullOrWhiteSpace(cerereId))
-                return RedirectToAction("Error", "SubmitRequest", new { errorType = 2 });
+                return RedirectToAction("Error", "SubmitRequest", new { errorType = (int)ErrorTypeEnum.InsertToCnasError });
 
             SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
             HttpContext.Session.SetObject("SubmitData", submitViewModel);
