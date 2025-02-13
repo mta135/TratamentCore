@@ -10,15 +10,19 @@
     <Compile Remove="Services\MConnect\MConnectServiceConfig\**" />
     <Compile Remove="Services\MConnect\Organization\**" />
     <Compile Remove="Services\MConnect\Person\**" />
+    <Compile Remove="Views\NewFolder\**" />
     <Content Remove="Services\MConnect\MConnectServiceConfig\**" />
     <Content Remove="Services\MConnect\Organization\**" />
     <Content Remove="Services\MConnect\Person\**" />
+    <Content Remove="Views\NewFolder\**" />
     <EmbeddedResource Remove="Services\MConnect\MConnectServiceConfig\**" />
     <EmbeddedResource Remove="Services\MConnect\Organization\**" />
     <EmbeddedResource Remove="Services\MConnect\Person\**" />
+    <EmbeddedResource Remove="Views\NewFolder\**" />
     <None Remove="Services\MConnect\MConnectServiceConfig\**" />
     <None Remove="Services\MConnect\Organization\**" />
     <None Remove="Services\MConnect\Person\**" />
+    <None Remove="Views\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>

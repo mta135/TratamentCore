@@ -13,6 +13,7 @@ using static ServiceReference.BiletePortTypeClient;
 using Tratament.Web.Services.Tickets;
 using Tratament.Model.Models.EcerereTicketService;
 using Tratament.Web.ViewModels.SendRequest.Heleper;
+using static QuestPDF.Helpers.Colors;
 
 
 
@@ -58,7 +59,6 @@ namespace Tratament.Web.Controllers
         {
             ViewBag.TicketTypes = GetTicketTypes();
 
-
             if(!_validatorService.HasRequestValidCaptchaEntry(Language.English, DisplayMode.ShowDigits))
             {
                 ViewBag.IsVerified = true;
@@ -67,40 +67,24 @@ namespace Tratament.Web.Controllers
                 return View("Send");
             }
 
-            PersonFilter personFilter = new();
-            personFilter.IDNP = requestViewModel.Idnp;
+            PersonFilter personFilter = new() { IDNP = requestViewModel.Idnp };
 
             PersonModel mconnectPerson = await _mConnectService.GetPerson(personFilter);
 
-            if (mconnectPerson != null)
-            {
-                TicketInsertModel insertModel = SetTicketInsertData(mconnectPerson, requestViewModel); // acest obiect va trebui transmis in sesiune...
+            if (string.IsNullOrWhiteSpace(mconnectPerson.IDNP))
+                return RedirectToAction("Error", "SubmitRequest", new { errorType = 1 });
 
-                string cerereId = await _ticketService.InsertTicketToEcerere(insertModel);
-    
-                SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);     // nu stiu daca trebui aceasta clasa.
+            TicketInsertModel insertModel = SetTicketInsertData(mconnectPerson, requestViewModel);
 
-                HttpContext.Session.SetObject("SubmitData", submitViewModel);
+            string cerereId = await _ticketService.InsertTicketToEcerere(insertModel);
 
-                return RedirectToAction("Submited", "SendRequest");
+            if (string.IsNullOrWhiteSpace(cerereId))
+                return RedirectToAction("Error", "SubmitRequest", new { errorType = 2 });
 
-            }
-            
-            return View();
-        }
+            SubmitViewModel submitViewModel = SetSubmitedData(mconnectPerson, cerereId, requestViewModel.TicketTypeId);
+            HttpContext.Session.SetObject("SubmitData", submitViewModel);
 
-        [HttpGet]
-        public IActionResult Submited()
-        {
-            SubmitViewModel submitViewModel = new SubmitViewModel();
-
-            submitViewModel = HttpContext.Session.GetObject<SubmitViewModel>("SubmitData");
-
-            if (submitViewModel == null)
-                submitViewModel = new SubmitViewModel();
-
-
-            return View(submitViewModel);
+            return RedirectToAction("Submited", "SubmitRequest");
         }
 
         private List<SelectListItem> GetTicketTypes()
@@ -177,7 +161,7 @@ namespace Tratament.Web.Controllers
             ticketInsertModel.Vemail = sendRequest.Email;
 
             ticketInsertModel.VnascutD = persone.DateOfBirth;
-            ticketInsertModel.Vsex = null;
+            ticketInsertModel.Vsex = "F";
 
             return ticketInsertModel;
         }

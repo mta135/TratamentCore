@@ -14,8 +14,8 @@ namespace Tratament.Web.Services.Tickets
             {
                 BiletePortTypeClient client = TicketServiceConfig.SetClient();
 
-                ins_ecerereResponse response = await client.ins_ecerereAsync(ticket.Vpres_rf, ticket.Vidnp, ticket.Vnume,
-                    ticket.Vidnp, ticket.Vcuatm, ticket.Vadresa, ticket.Vtelefon, ticket.Vemail, ticket.VnascutD, ticket.Vsex);
+                ins_ecerereResponse response = await client.ins_ecerereAsync(ticket.Vpres_rf, ticket.Vidnp, ticket.Vnume, ticket.Vprenume, ticket.Vcuatm,
+                    ticket.Vadresa, ticket.Vtelefon, ticket.Vemail, ticket.VnascutD, ticket.Vsex);
 
                 string cerereId = response.Element.FirstOrDefault().cerere_id;
 
