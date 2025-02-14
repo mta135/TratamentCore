@@ -5,10 +5,16 @@ namespace Tratament.Web.Services.Tickets
 {
     public class TreatmentTicketClient
     {
+
+        private static string ServiceUrl;
+
+        public static void InitializeSettings(IConfiguration config)
+        {
+            ServiceUrl = config.GetValue<string>("TreatmentTicketService:ServiceUrl");
+        }
+
         public static BiletePortTypeChannel SetClient()
         {
-            string serviceUrl = "http://172.16.1.11:9763/services/Bilete";
-
             BasicHttpBinding binding = new BasicHttpBinding
             {
                 Security = new BasicHttpSecurity
@@ -17,7 +23,7 @@ namespace Tratament.Web.Services.Tickets
                 }
             };
 
-            EndpointAddress endpoint = new EndpointAddress(serviceUrl);
+            EndpointAddress endpoint = new EndpointAddress(ServiceUrl);
             ChannelFactory<BiletePortTypeChannel> factory = new ChannelFactory<BiletePortTypeChannel>(binding, endpoint);
 
             return factory.CreateChannel();

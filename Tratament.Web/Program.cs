@@ -64,6 +64,8 @@ internal class Program
         #region InitializeSettings
 
         MccCertificateConfig.InitializeSettings(configuration);
+        TreatmentTicketClient.InitializeSettings(configuration);
+
         WriteLog.InitLoggers();
 
         #endregion
