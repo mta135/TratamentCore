@@ -1,8 +1,6 @@
-﻿using ServiceReference;
-using System.Threading.Tasks;
-using Tratament.Model.Models.EcerereTicketService;
+﻿using Tratament.Model.Models.EcerereTicketService;
 using Tratament.Web.LoggerSetup;
-using Tratament.Web.ViewModels.SendRequest;
+using Tratament.Web.Service.TreatmentTicket.Service;
 
 namespace Tratament.Web.Services.Tickets
 {
@@ -12,10 +10,23 @@ namespace Tratament.Web.Services.Tickets
         {
             try
             {
-                BiletePortTypeClient client = TreatmentTicketClient.SetClient();
+                ins_ecerereRequest request = new ins_ecerereRequest();
 
-                ins_ecerereResponse response = await client.ins_ecerereAsync(ticket.Vpres_rf, ticket.Vidnp, ticket.Vnume, ticket.Vprenume, ticket.Vcuatm,
-                    ticket.Vadresa, ticket.Vtelefon, ticket.Vemail, ticket.VnascutD, ticket.Vsex);
+                request.vpres_rf = ticket.Vpres_rf;
+                request.vidnp = ticket.Vidnp;
+                request.vnume = ticket.Vnume;
+                request.vprenume = ticket.Vprenume;
+
+                request.vcuatm = ticket.Vcuatm;
+                request.vadresa = ticket.Vadresa;
+                request.vtelefon = ticket.Vtelefon;
+                request.vemail = ticket.Vemail;
+                request.vnascut_d = ticket.VnascutD;
+                request.vsex = ticket.Vsex;
+
+                BiletePortTypeChannel client = TreatmentTicketClient.SetClient();
+
+                ins_ecerereResponse response = await client.ins_ecerereAsync(request);
 
                 string cerereId = response.Element.FirstOrDefault().cerere_id;
 

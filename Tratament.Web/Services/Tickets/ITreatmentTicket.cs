@@ -5,7 +5,6 @@ namespace Tratament.Web.Services.Tickets
 {
     public interface ITreatmentTicket
     {
-        public Task<string> InsertTicketToEcerere(TicketInsertModel ticket);
-       
+        public Task<string> InsertTicketToEcerere(TicketInsertModel ticket);    
     }
 }

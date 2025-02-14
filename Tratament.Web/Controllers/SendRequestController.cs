@@ -9,11 +9,11 @@ using Tratament.Web.ViewModels.SendRequest;
 using Tratament.Web.Services.MConnect.Models.Person;
 using Tratament.Model.Models.ExternalServices;
 using Tratament.Web.Core;
-using static ServiceReference.BiletePortTypeClient;
 using Tratament.Web.Services.Tickets;
 using Tratament.Model.Models.EcerereTicketService;
 using Tratament.Model.Models.Enums;
 using Tratament.Web.ViewModels.SubmitRequest;
+using Tratament.Web.Service.TreatmentTicket.Service;
 
 
 
@@ -175,8 +175,24 @@ namespace Tratament.Web.Controllers
                 PersonFilter personFilter = new PersonFilter();
                 personFilter.IDNP = "2010500696009";
 
-                ServiceReference.BiletePortTypeClient client = new ServiceReference.BiletePortTypeClient(EndpointConfiguration.SOAP11Endpoint);
-                var value = await client.ins_ecerereAsync(1, "2010500696009", "MTA", "MTA", "4598", "Adresa client", "7895321", "@gmail.com", DateTime.Now, null);
+                BiletePortTypeChannel client = TreatmentTicketClient.SetClient();
+
+                ins_ecerereRequest request = new()
+                {
+                    vpres_rf = 1,
+                    vidnp = "2010500696009",
+                    vprenume = "MTA",
+                    vnume = "MTA",
+                    vcuatm = "4598",
+                    vadresa = "Adresa client",
+                    vtelefon = "7536245",
+                    vemail = "@gmail.com",
+                    vnascut_d = DateTime.Now,
+                    vsex = null
+                };
+
+                ins_ecerereResponse response = await client.ins_ecerereAsync(request);
+                string cerereId = response.Element.FirstOrDefault().cerere_id;
 
             }
             catch (Exception ex)
