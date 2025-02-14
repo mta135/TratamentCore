@@ -107,31 +107,6 @@ namespace Tratament.Web.Controllers
             return pensionType;
         }
 
-        public async Task<IActionResult> TestMconnect() // aceasta metoda va trebui stearsa
-        {
-
-            try
-            {
-                PersonFilter personFilter = new PersonFilter();
-                personFilter.IDNP = "2010500696009";
-
-                ServiceReference.BiletePortTypeClient client = new ServiceReference.BiletePortTypeClient(EndpointConfiguration.SOAP11Endpoint);
-                var value = await client.ins_ecerereAsync(1, "2010500696009", "MTA", "MTA", "4598", "Adresa client", "7895321", "@gmail.com", DateTime.Now, null);
-
-            }
-            catch (Exception ex)
-            {
-                string request = ex.ToString();
-            }
-
-            return View();
-
-            //return Content("Mconnect IDNP: " + mconnectPerson.IDNP);
-
-        }
-
-
-        // cread ca asteasca funtie va trebuie de transferta in alta clasa
         public SubmitViewModel SetSubmitedData(PersonModel mconnectPerson, string requestNumber, string ticketTypeId)
         {
             SubmitViewModel submitViewModel = new SubmitViewModel();
@@ -150,7 +125,6 @@ namespace Tratament.Web.Controllers
 
             return submitViewModel;
         }
-
 
         public TicketInsertModel SetTicketInsertData(PersonModel persone, SendRequestViewModel sendRequest)
         {
@@ -191,6 +165,29 @@ namespace Tratament.Web.Controllers
             }
 
             return null;
+        }
+
+        public async Task<IActionResult> TestMconnect() // aceasta metoda va trebui stearsa
+        {
+
+            try
+            {
+                PersonFilter personFilter = new PersonFilter();
+                personFilter.IDNP = "2010500696009";
+
+                ServiceReference.BiletePortTypeClient client = new ServiceReference.BiletePortTypeClient(EndpointConfiguration.SOAP11Endpoint);
+                var value = await client.ins_ecerereAsync(1, "2010500696009", "MTA", "MTA", "4598", "Adresa client", "7895321", "@gmail.com", DateTime.Now, null);
+
+            }
+            catch (Exception ex)
+            {
+                string request = ex.ToString();
+            }
+
+            return View();
+
+            //return Content("Mconnect IDNP: " + mconnectPerson.IDNP);
+
         }
 
     }
