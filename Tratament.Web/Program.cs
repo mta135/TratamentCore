@@ -57,7 +57,7 @@ internal class Program
         #region Dependency Injection
 
         builder.Services.AddScoped<IMConnectService, MConnectService>();
-        builder.Services.AddScoped<ITicketService, TicketService>();
+        builder.Services.AddScoped<ITreatmentTicket, TreatmentTicket>();
 
         #endregion
 

@@ -6,13 +6,13 @@ using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Services.Tickets
 {
-    public class TicketService : ITicketService
+    public class TreatmentTicket : ITreatmentTicket
     {
         public async Task<string> InsertTicketToEcerere(TicketInsertModel ticket)
         {
             try
             {
-                BiletePortTypeClient client = TicketServiceConfig.SetClient();
+                BiletePortTypeClient client = TreatmentTicketClient.SetClient();
 
                 ins_ecerereResponse response = await client.ins_ecerereAsync(ticket.Vpres_rf, ticket.Vidnp, ticket.Vnume, ticket.Vprenume, ticket.Vcuatm,
                     ticket.Vadresa, ticket.Vtelefon, ticket.Vemail, ticket.VnascutD, ticket.Vsex);

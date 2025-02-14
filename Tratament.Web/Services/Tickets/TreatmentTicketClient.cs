@@ -3,7 +3,7 @@ using static ServiceReference.BiletePortTypeClient;
 
 namespace Tratament.Web.Services.Tickets
 {
-    public class TicketServiceConfig
+    public class TreatmentTicketClient
     {
         public static BiletePortTypeClient SetClient()
         {

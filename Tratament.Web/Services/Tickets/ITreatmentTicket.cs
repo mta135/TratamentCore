@@ -3,7 +3,7 @@ using Tratament.Web.ViewModels.SendRequest;
 
 namespace Tratament.Web.Services.Tickets
 {
-    public interface ITicketService
+    public interface ITreatmentTicket
     {
         public Task<string> InsertTicketToEcerere(TicketInsertModel ticket);
        

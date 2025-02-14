@@ -29,9 +29,9 @@ namespace Tratament.Web.Controllers
         private DNTCaptchaOptions _captchoptions;
 
 
-        private ITicketService _ticketService;
+        private ITreatmentTicket _ticketService;
 
-        public SendRequestController(IRecaptchaService recaptchaService, IMConnectService mConnectService, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> captchaOptions, ITicketService ticketService)
+        public SendRequestController(IRecaptchaService recaptchaService, IMConnectService mConnectService, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> captchaOptions, ITreatmentTicket ticketService)
         {    
             _recaptchaService = recaptchaService;
             _mConnectService = mConnectService;
