@@ -28,6 +28,8 @@ namespace Tratament.Web.Services.Tickets
 
                 ins_ecerereResponse response = await client.ins_ecerereAsync(request);
 
+                TempLogs(request);
+
                 string cerereId = response.Element.FirstOrDefault().cerere_id;
 
                 return cerereId;
@@ -39,6 +41,13 @@ namespace Tratament.Web.Services.Tickets
 
                 return null;
             }
+        }
+
+        public void TempLogs(ins_ecerereRequest request)
+        {
+
+            WriteLog.Common.Debug("InsertTicketToEcerere.Send params" + "; vpres_rf: " + request.vpres_rf + "; vidnp: "
+                + request.vidnp + "; request.vnume; " + request.vnume + "; request.vprenume: " + request.vprenume + "; request.vcuatm: " + request.vcuatm + "; request.vadresa: " + request.vadresa + "; request.vtelefon: " + request.vemail + "; request.vnascut_d: " + request.vnascut_d);
         }
     }
 }

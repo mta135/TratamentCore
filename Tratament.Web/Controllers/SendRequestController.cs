@@ -172,8 +172,16 @@ namespace Tratament.Web.Controllers
 
             try
             {
+
                 PersonFilter personFilter = new PersonFilter();
                 personFilter.IDNP = "2010500696009";
+
+
+                var value = _mConnectService.GetPerson(personFilter);
+
+
+                //PersonFilter personFilter = new PersonFilter();
+                //personFilter.IDNP = "2010500696009";
 
                 BiletePortTypeChannel client = TreatmentTicketClient.SetClient();
 
