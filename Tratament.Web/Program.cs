@@ -30,11 +30,12 @@ internal class Program
         // Configure session
         builder.Services.AddSession(options =>
         {
-            options.Cookie.HttpOnly = true; // Prevent JavaScript access
-            options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Required for SameSite=None
+            options.Cookie.HttpOnly = true;
+            options.Cookie.IsEssential = true; // Ensures the cookie is always sent
 
-            options.Cookie.SameSite = SameSiteMode.None; // Allow cross-site requests
-            options.IdleTimeout = TimeSpan.FromMinutes(20); // Session timeout
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.Cookie.SameSite = SameSiteMode.None;
+            options.IdleTimeout = TimeSpan.FromMinutes(20);
         });
 
         #endregion
