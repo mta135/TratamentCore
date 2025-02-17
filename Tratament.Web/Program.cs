@@ -49,7 +49,7 @@ internal class Program
         #region DNT Captcha
 
         builder.Services.AddDNTCaptcha(options =>
-               options.UseMemoryCacheStorageProvider().ShowThousandsSeparators(false)
+               options.UseDistributedCacheStorageProvider().ShowThousandsSeparators(false)
                  .WithEncryptionKey("12345"));
 
         #endregion
