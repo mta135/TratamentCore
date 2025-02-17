@@ -30,11 +30,6 @@ internal class Program
         // Configure session
         builder.Services.AddSession(options =>
         {
-            options.Cookie.HttpOnly = true;
-            options.Cookie.IsEssential = true; // Ensures the cookie is always sent
-
-            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            options.Cookie.SameSite = SameSiteMode.None;
             options.IdleTimeout = TimeSpan.FromMinutes(20);
         });
 
