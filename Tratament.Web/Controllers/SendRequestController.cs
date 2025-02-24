@@ -21,8 +21,7 @@ namespace Tratament.Web.Controllers
 {
     public class SendRequestController : Controller
     {
-        private readonly IRecaptchaService _recaptchaService;
-
+     
         private readonly IMConnectService _mConnectService;
 
         private IDNTCaptchaValidatorService _validatorService; 
@@ -31,9 +30,8 @@ namespace Tratament.Web.Controllers
 
         private ITreatmentTicket _ticketService;
 
-        public SendRequestController(IRecaptchaService recaptchaService, IMConnectService mConnectService, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> captchaOptions, ITreatmentTicket ticketService)
+        public SendRequestController(IMConnectService mConnectService, IDNTCaptchaValidatorService validatorService, IOptions<DNTCaptchaOptions> captchaOptions, ITreatmentTicket ticketService)
         {    
-            _recaptchaService = recaptchaService;
             _mConnectService = mConnectService;
 
             _validatorService = validatorService;
