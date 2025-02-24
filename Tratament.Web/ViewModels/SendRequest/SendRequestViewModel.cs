@@ -8,7 +8,7 @@ namespace Tratament.Web.ViewModels.SendRequest
   
         [Required(ErrorMessage = @"Acest cîmp este obligator.")]
         [StringLength(13, MinimumLength = 13, ErrorMessage = @"IDNP-ul trebuie să fie din 13 cifre.")]
-        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Sunt permise doar caractere alfa numerice.")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "Sunt permise doar cifre.")]
         public string Idnp { get; set; }
 
         [RegularExpression(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$", ErrorMessage = "Emailul nu este valid.")]
