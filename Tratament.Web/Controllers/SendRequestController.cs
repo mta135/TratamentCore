@@ -14,6 +14,7 @@ using Tratament.Model.Models.EcerereTicketService;
 using Tratament.Model.Models.Enums;
 using Tratament.Web.ViewModels.SubmitRequest;
 using Tratament.Web.Service.TreatmentTicket.Service;
+using Tratament.Web.ViewModels.SendRequest.Heleper;
 
 
 
@@ -149,7 +150,7 @@ namespace Tratament.Web.Controllers
         {
             string address = adr.Country + " " + adr.Region + " " + adr.Locality + " " + adr.Locality + " " + adr.Street + " " + adr.House + " " + adr.Block + " " + adr.Flat;
 
-            return adr.Country;  //SubmitRequestHelper.NormalizeStringLength(address, 50);
+            return SubmitRequestHelper.NormalizeStringLength(address, 50);
         }
 
         private DateTime? BirthDateFormat(DateTime? birthDate)
