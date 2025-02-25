@@ -37,7 +37,7 @@ namespace Tratament.Web.ServicesModels.PhisicalPerson
 
                     personAPI.DateOfBirth = Convert.ToDateTime(person.ChildNodes[4].InnerText);
 
-
+                    personAPI.SexCode = person.ChildNodes[7].InnerText;
 
                     XmlNode address = person.ChildNodes[14];
 
