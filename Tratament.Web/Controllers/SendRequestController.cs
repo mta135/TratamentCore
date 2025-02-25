@@ -141,7 +141,7 @@ namespace Tratament.Web.Controllers
             ticketInsertModel.Vemail = sendRequest.Email;
 
             ticketInsertModel.VnascutD = persone.DateOfBirth;
-            ticketInsertModel.Vsex = null;
+            ticketInsertModel.Vsex = persone.SexCode;
 
             return ticketInsertModel;
         }

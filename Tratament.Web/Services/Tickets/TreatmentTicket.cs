@@ -81,7 +81,7 @@ namespace Tratament.Web.Services.Tickets
 
                 + request.vidnp + "; request.vnume; " +  RemoveDiacritics(request.vnume) + "; request.vprenume: " + RemoveDiacritics(request.vprenume) + ";" +
                 " request.vcuatm: " + request.vcuatm + "; request.vadresa: " + RemoveDiacritics(request.vadresa) + ";" +
-                " request.vtelefon: " + request.vemail + "; request.vnascut_d: " + request.vnascut_d);
+                " request.vtelefon: " + request.vemail + "; request.vnascut_d: " + request.vnascut_d + "; Sex: " + request.vsex);
         }
 
         #endregion
