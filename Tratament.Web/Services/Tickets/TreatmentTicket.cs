@@ -1,4 +1,6 @@
-﻿using Tratament.Model.Models.EcerereTicketService;
+﻿using System.Globalization;
+using System.Text;
+using Tratament.Model.Models.EcerereTicketService;
 using Tratament.Web.LoggerSetup;
 using Tratament.Web.Service.TreatmentTicket.Service;
 
@@ -43,11 +45,42 @@ namespace Tratament.Web.Services.Tickets
             }
         }
 
+
+        static string RemoveDiacriticsV3(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            // Normalize to decomposed form (FormD)
+            string normalizedText = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char c in normalizedText)
+            {
+                // Check if the character is a diacritic
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(c);
+                }
+            }
+
+            // Normalize back to FormC for proper composition
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+
+        #region Log
+
         public void TempLogs(ins_ecerereRequest request)
         {
 
             WriteLog.Common.Debug("InsertTicketToEcerere.Send params" + "; vpres_rf: " + request.vpres_rf + "; vidnp: "
                 + request.vidnp + "; request.vnume; " + request.vnume + "; request.vprenume: " + request.vprenume + "; request.vcuatm: " + request.vcuatm + "; request.vadresa: " + request.vadresa + "; request.vtelefon: " + request.vemail + "; request.vnascut_d: " + request.vnascut_d);
         }
+
+        #endregion
     }
+
+
+
 }
