@@ -77,8 +77,11 @@ namespace Tratament.Web.Services.Tickets
         public void TempLogs(ins_ecerereRequest request)
         {
 
-            WriteLog.Common.Debug("InsertTicketToEcerere.Send params" + "; vpres_rf: " + request.vpres_rf + "; vidnp: "
-                + request.vidnp + "; request.vnume; " + request.vnume + "; request.vprenume: " + request.vprenume + "; request.vcuatm: " + request.vcuatm + "; request.vadresa: " + request.vadresa + "; request.vtelefon: " + request.vemail + "; request.vnascut_d: " + request.vnascut_d);
+            WriteLog.Common.Debug("InsertTicketToEcerere. Send params" + "; vpres_rf: " + request.vpres_rf + "; vidnp: "
+
+                + request.vidnp + "; request.vnume; " +  RemoveDiacritics(request.vnume) + "; request.vprenume: " + RemoveDiacritics(request.vprenume) + ";" +
+                " request.vcuatm: " + request.vcuatm + "; request.vadresa: " + RemoveDiacritics(request.vadresa) + ";" +
+                " request.vtelefon: " + request.vemail + "; request.vnascut_d: " + request.vnascut_d);
         }
 
         #endregion
