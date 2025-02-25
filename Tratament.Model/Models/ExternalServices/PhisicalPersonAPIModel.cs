@@ -17,6 +17,8 @@
 
         public string Patronymic { get; set; }
 
+        public string SexCode { get; set; }
+
         public PersoneAddress PersoneAddress { get; set; }
     }
 
