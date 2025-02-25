@@ -16,11 +16,14 @@ namespace Tratament.Web.Services.Tickets
 
                 request.vpres_rf = ticket.Vpres_rf;
                 request.vidnp = ticket.Vidnp;
-                request.vnume = ticket.Vnume;
-                request.vprenume = ticket.Vprenume;
+
+                request.vnume = RemoveDiacritics(ticket.Vnume);
+                request.vprenume = RemoveDiacritics(ticket.Vprenume);
 
                 request.vcuatm = ticket.Vcuatm;
-                request.vadresa = ticket.Vadresa;
+
+                request.vadresa = RemoveDiacritics(ticket.Vadresa);
+                
                 request.vtelefon = ticket.Vtelefon;
                 request.vemail = ticket.Vemail;
                 request.vnascut_d = ticket.VnascutD;
@@ -46,7 +49,7 @@ namespace Tratament.Web.Services.Tickets
         }
 
 
-        static string RemoveDiacriticsV3(string text)
+        private string RemoveDiacritics(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return text;
