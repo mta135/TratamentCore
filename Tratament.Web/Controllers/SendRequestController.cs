@@ -150,7 +150,7 @@ namespace Tratament.Web.Controllers
         {
             string address = adr.Country + " " + adr.Region + " " + adr.Locality + " " + adr.Locality + " " + adr.Street + " " + adr.House + " " + adr.Block + " " + adr.Flat;
 
-            return SubmitRequestHelper.NormalizeStringLength(address, 50);
+            return SubmitRequestHelper.NormalizeStringLength(address, 250);
         }
 
         private DateTime? BirthDateFormat(DateTime? birthDate)
